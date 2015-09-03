@@ -25,6 +25,7 @@ namespace Idk
         float timer;
         string direction = "down";
         World world;
+        Rectangle taxiRect;
 
         //Physics parameters
 
@@ -55,8 +56,8 @@ namespace Idk
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             world = new World(new Vector2(0,0));
-            graphics.PreferredBackBufferWidth = 1280;
-            graphics.PreferredBackBufferHeight = 720;
+            graphics.PreferredBackBufferWidth = 1920;
+            graphics.PreferredBackBufferHeight = 1080;
         }
 
         /// <summary>
@@ -83,7 +84,8 @@ namespace Idk
 
             taxi = Content.Load<Texture2D>("Taxi");
             background = Content.Load<Texture2D>("Background_TEMP");
-           // car1 = new AnimatedSprite(taxi, 1, 1,new Vector2(300,200));
+
+            // car1 = new AnimatedSprite(taxi, 1, 1,new Vector2(300,200));
             //car2 = new AnimatedSprite(cartex, 4, 3, new Vector2(400, 300));
             //uint[] texData=new uint[cartex.Width*cartex.Height]
 
@@ -113,10 +115,19 @@ namespace Idk
             body.LinearDamping = 1;
             body.AngularDamping = 1;
 
+            taxiRect = new Rectangle((int)body.Position.X,(int)body.Position.Y,taxi.Width,taxi.Height);
 
-           // leftWheel=BodyFactory.CreateRectangle(world,)
+
+            leftWheel = BodyFactory.CreateRectangle(world, 1f, 1f, 0f);
+
+            leftWheel.BodyType = BodyType.Dynamic;
+            leftWheel.Position = ConvertUnits.ToSimUnits(body.Position)+ new Vector2(-31,23);
 
 
+            rightWheel = BodyFactory.CreateRectangle(world, 1f, 1f, 0f);
+
+            rightWheel.BodyType = BodyType.Dynamic;
+            rightWheel.Position = ConvertUnits.ToSimUnits(body.Position) + new Vector2(31, 23);
 
 
             /*     leftWheel = new Body(world);
@@ -245,42 +256,49 @@ namespace Idk
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Down))
             {
-                body.ApplyForce(new Vector2(0, 0.1f), body.WorldCenter);
-             /*   if (!direction.Equals("down"))
-                {
-                   // direction = "down";
-                    
-                   
-                   // engineSpeed = Horsepower;
-                }
-                //car1.Update(direction);
-                */
+                // body.ApplyForce(new Vector2(0, 0.1f), body.WorldCenter);
+                body.ApplyLinearImpulse(new Vector2(0, 0.01f));
+                /*   if (!direction.Equals("down"))
+                   {
+                      // direction = "down";
+
+
+                      // engineSpeed = Horsepower;
+                   }
+                   //car1.Update(direction);
+                   */
 
             }
             if (Keyboard.GetState().IsKeyDown(Keys.Up))
             {
-                    body.ApplyForce(new Vector2(0,-0.2f),body.WorldCenter);
-                    Console.WriteLine(body.Position);
+                //body.ApplyForce(new Vector2(0,-0.2f),body.WorldCenter);
+               // body.ApplyLinearImpulse(new Vector2(0, -0.02f));
+             leftWheel.ApplyLinearImpulse(new Vector2(0, -0.02f));
+                rightWheel.ApplyLinearImpulse(new Vector2(0, -0.02f));
 
-                    //engineSpeed = -Horsepower;
+                //Console.WriteLine(body.Position);
 
-               // car1.Update(direction);
+                //engineSpeed = -Horsepower;
+
+                // car1.Update(direction);
 
             }
             if (Keyboard.GetState().IsKeyDown(Keys.Left))
             {
-                steeringAngle -= 0.005f;
+                //body.ApplyForce(new Vector2(-1f, 0), body.WorldCenter);
+                //steeringAngle -= 0.005f;
 
                 }
              //   car1.Update(direction);
 
             if (Keyboard.GetState().IsKeyDown(Keys.Right))
             {
-                steeringAngle += 0.005f;
-                    direction = "right";
+                body.ApplyForce(new Vector2(1f, 0), body.WorldCenter);
+                //steeringAngle += 0.005f;
+                // direction = "right";
 
-           
-              //  car1.Update(direction);
+
+                //  car1.Update(direction);
 
             }
 
@@ -328,6 +346,7 @@ namespace Idk
             }
         }
 
+
         /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>
@@ -342,8 +361,9 @@ namespace Idk
             int y = (int)vec.Y;
             Vector2 origin = new Vector2(taxi.Width / 2, taxi.Height / 2);
 
+
             spriteBatch.Draw(background, new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight), Color.White);
-            spriteBatch.Draw(taxi, vec, new Rectangle(0, 0, taxi.Width, taxi.Height),Color.White,steeringAngle,origin,1.0f,SpriteEffects.None,1);
+            spriteBatch.Draw(taxi, vec, new Rectangle(0, 0, taxi.Width, taxi.Height), Color.White,steeringAngle,origin,1.0f,SpriteEffects.None,1);
             //car2.Draw(spriteBatch);
             spriteBatch.End();
 

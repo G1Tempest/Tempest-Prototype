@@ -49,9 +49,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Farseer Engine MonoGame OpenGL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\farseerMono3.3.1\Farseer-MonoGame-WinGL\Farseer Engine MonoGame OpenGL\bin\Debug\Farseer Engine MonoGame OpenGL.dll</HintPath>
+    <Reference Include="Farseer Engine MonoGame OpenGL">
+      <HintPath>..\Farseer Engine MonoGame OpenGL\bin\Debug\Farseer Engine MonoGame OpenGL.dll</HintPath>
     </Reference>
     <Reference Include="MonoGame.Framework">
       <HintPath>$(MSBuildProgramFiles32)\MonoGame\v3.0\Assemblies\Windows\MonoGame.Framework.dll</HintPath>
