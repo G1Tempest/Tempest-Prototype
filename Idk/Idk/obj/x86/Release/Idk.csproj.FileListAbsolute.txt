@@ -1,0 +1,34 @@
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\Idk.exe.config
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\Content\car.xnb
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\Content\Taxi.xnb
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\Idk.exe
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\Idk.pdb
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\Farseer Engine MonoGame OpenGL.dll
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\MonoGame.Framework.dll
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\SharpDX.MediaFoundation.dll
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\SharpDX.dll
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\SharpDX.XAudio2.dll
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\SharpDX.Direct3D11.dll
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\SharpDX.DXGI.dll
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\SharpDX.Direct2D1.dll
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\SharpDX.XInput.dll
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\SharpDX.RawInput.dll
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\OpenTK.dll
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\Lidgren.Network.dll
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\Tao.Sdl.dll
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\SharpDX.Direct3D9.dll
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\Farseer Engine MonoGame OpenGL.pdb
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\MonoGame.Framework.xml
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\SharpDX.MediaFoundation.xml
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\SharpDX.xml
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\SharpDX.XAudio2.xml
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\SharpDX.Direct3D11.xml
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\SharpDX.DXGI.xml
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\SharpDX.Direct2D1.xml
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\SharpDX.XInput.xml
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\SharpDX.RawInput.xml
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\SharpDX.Direct3D9.xml
+C:\Users\u1006341\Idontknow\Idk\Idk\obj\x86\Release\Idk.csprojResolveAssemblyReference.cache
+C:\Users\u1006341\Idontknow\Idk\Idk\obj\x86\Release\Idk.exe
+C:\Users\u1006341\Idontknow\Idk\Idk\obj\x86\Release\Idk.pdb
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\Content\Background_TEMP.xnb

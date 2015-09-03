@@ -1,0 +1,34 @@
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Debug\Idk.exe
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Debug\Idk.pdb
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Debug\MonoGame.Framework.dll
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Debug\SharpDX.MediaFoundation.dll
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Debug\SharpDX.dll
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Debug\SharpDX.XAudio2.dll
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Debug\SharpDX.Direct3D11.dll
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Debug\SharpDX.DXGI.dll
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Debug\SharpDX.Direct2D1.dll
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Debug\SharpDX.XInput.dll
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Debug\SharpDX.RawInput.dll
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Debug\SharpDX.Direct3D9.dll
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Debug\MonoGame.Framework.xml
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Debug\SharpDX.MediaFoundation.xml
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Debug\SharpDX.xml
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Debug\SharpDX.XAudio2.xml
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Debug\SharpDX.Direct3D11.xml
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Debug\SharpDX.DXGI.xml
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Debug\SharpDX.Direct2D1.xml
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Debug\SharpDX.XInput.xml
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Debug\SharpDX.RawInput.xml
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Debug\SharpDX.Direct3D9.xml
+C:\Users\u1006341\Idontknow\Idk\Idk\obj\x86\Debug\Idk.csprojResolveAssemblyReference.cache
+C:\Users\u1006341\Idontknow\Idk\Idk\obj\x86\Debug\Idk.exe
+C:\Users\u1006341\Idontknow\Idk\Idk\obj\x86\Debug\Idk.pdb
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Debug\Content\car.xnb
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Debug\Idk.exe.config
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Debug\Farseer Engine MonoGame OpenGL.dll
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Debug\OpenTK.dll
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Debug\Lidgren.Network.dll
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Debug\Tao.Sdl.dll
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Debug\Farseer Engine MonoGame OpenGL.pdb
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Debug\Content\Taxi.xnb
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Debug\Content\Background_TEMP.xnb
