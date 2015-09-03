@@ -8,7 +8,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Idk", "Idk\Idk.csproj", "{B
 		{2F9DF8E3-CF9D-45A9-B678-94EBE4A40889} = {2F9DF8E3-CF9D-45A9-B678-94EBE4A40889}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Farseer Engine MonoGame OpenGL", "..\..\farseerMono3.3.1\Farseer-MonoGame-WinGL\Farseer Engine MonoGame OpenGL\Farseer Engine MonoGame OpenGL.csproj", "{2F9DF8E3-CF9D-45A9-B678-94EBE4A40889}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Farseer Engine MonoGame OpenGL", "Farseer Engine MonoGame OpenGL\Farseer Engine MonoGame OpenGL.csproj", "{2F9DF8E3-CF9D-45A9-B678-94EBE4A40889}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

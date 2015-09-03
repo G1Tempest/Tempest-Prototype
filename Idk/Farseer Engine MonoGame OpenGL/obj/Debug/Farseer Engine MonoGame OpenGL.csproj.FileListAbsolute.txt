@@ -1,0 +1,8 @@
+C:\Source\Farseer Physics Engine 3.3.1 WinGL\Farseer Engine MonoGame OpenGL\bin\Debug\Farseer Engine MonoGame OpenGL.dll
+C:\Source\Farseer Physics Engine 3.3.1 WinGL\Farseer Engine MonoGame OpenGL\bin\Debug\Farseer Engine MonoGame OpenGL.pdb
+C:\Source\Farseer Physics Engine 3.3.1 WinGL\Farseer Engine MonoGame OpenGL\obj\Debug\Farseer Engine MonoGame OpenGL.dll
+C:\Source\Farseer Physics Engine 3.3.1 WinGL\Farseer Engine MonoGame OpenGL\obj\Debug\Farseer Engine MonoGame OpenGL.pdb
+C:\Users\u1006341\farseerMono3.3.1\Farseer-MonoGame-WinGL\Farseer Engine MonoGame OpenGL\bin\Debug\Farseer Engine MonoGame OpenGL.dll
+C:\Users\u1006341\farseerMono3.3.1\Farseer-MonoGame-WinGL\Farseer Engine MonoGame OpenGL\bin\Debug\Farseer Engine MonoGame OpenGL.pdb
+C:\Users\u1006341\farseerMono3.3.1\Farseer-MonoGame-WinGL\Farseer Engine MonoGame OpenGL\obj\Debug\Farseer Engine MonoGame OpenGL.dll
+C:\Users\u1006341\farseerMono3.3.1\Farseer-MonoGame-WinGL\Farseer Engine MonoGame OpenGL\obj\Debug\Farseer Engine MonoGame OpenGL.pdb

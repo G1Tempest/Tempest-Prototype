@@ -1,0 +1,9 @@
+C:\Users\u1006341\farseerMono3.3.1\Farseer-MonoGame-WinGL\Farseer Engine MonoGame OpenGL\bin\Release\Farseer Engine MonoGame OpenGL.dll
+C:\Users\u1006341\farseerMono3.3.1\Farseer-MonoGame-WinGL\Farseer Engine MonoGame OpenGL\bin\Release\Farseer Engine MonoGame OpenGL.pdb
+C:\Users\u1006341\farseerMono3.3.1\Farseer-MonoGame-WinGL\Farseer Engine MonoGame OpenGL\bin\Release\Lidgren.Network.dll
+C:\Users\u1006341\farseerMono3.3.1\Farseer-MonoGame-WinGL\Farseer Engine MonoGame OpenGL\bin\Release\MonoGame.Framework.dll
+C:\Users\u1006341\farseerMono3.3.1\Farseer-MonoGame-WinGL\Farseer Engine MonoGame OpenGL\bin\Release\OpenTK.dll
+C:\Users\u1006341\farseerMono3.3.1\Farseer-MonoGame-WinGL\Farseer Engine MonoGame OpenGL\bin\Release\Tao.Sdl.dll
+C:\Users\u1006341\farseerMono3.3.1\Farseer-MonoGame-WinGL\Farseer Engine MonoGame OpenGL\obj\Release\Farseer Engine MonoGame OpenGL.dll
+C:\Users\u1006341\farseerMono3.3.1\Farseer-MonoGame-WinGL\Farseer Engine MonoGame OpenGL\obj\Release\Farseer Engine MonoGame OpenGL.pdb
+C:\Users\u1006341\farseerMono3.3.1\Farseer-MonoGame-WinGL\Farseer Engine MonoGame OpenGL\obj\Release\Farseer Engine MonoGame OpenGL.csprojResolveAssemblyReference.cache
