@@ -60,6 +60,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Background_TEMP.png" />
     <Content Include="Content\car.png" />
     <Content Include="Content\Taxi.png" />
     <Content Include="Icon.ico" />

@@ -21,6 +21,7 @@ namespace Idk
         SpriteBatch spriteBatch;
         AnimatedSprite car1,car2;
         Texture2D taxi;
+        Texture2D background;
         float timer;
         string direction = "down";
         World world;
@@ -37,7 +38,7 @@ namespace Idk
         Vector2 leftFrontWheelPosition = new Vector2(-1.5f, -1.9f);
         Vector2 rightFrontWheelPosition = new Vector2(1.5f, -1.9f);
         float engineSpeed;
-        float steeringAngle;
+        float steeringAngle=0;
 
         private Body leftWheel;
         private Body rightWheel;
@@ -47,11 +48,15 @@ namespace Idk
         private RevoluteJoint leftJoint;
         private RevoluteJoint rightJoint;
 
+
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             world = new World(new Vector2(0,0));
+            graphics.PreferredBackBufferWidth = 1280;
+            graphics.PreferredBackBufferHeight = 720;
         }
 
         /// <summary>
@@ -77,6 +82,7 @@ namespace Idk
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             taxi = Content.Load<Texture2D>("Taxi");
+            background = Content.Load<Texture2D>("Background_TEMP");
            // car1 = new AnimatedSprite(taxi, 1, 1,new Vector2(300,200));
             //car2 = new AnimatedSprite(cartex, 4, 3, new Vector2(400, 300));
             //uint[] texData=new uint[cartex.Width*cartex.Height]
@@ -105,61 +111,65 @@ namespace Idk
             body.BodyType= BodyType.Dynamic;
             body.Position = ConvertUnits.ToSimUnits(new Vector2(GraphicsDevice.Viewport.Width/2.0f, GraphicsDevice.Viewport.Height / 2.0f));
             body.LinearDamping = 1;
+            body.AngularDamping = 1;
+
+
+           // leftWheel=BodyFactory.CreateRectangle(world,)
 
 
 
 
-       /*     leftWheel = new Body(world);
-            leftWheel.BodyType = BodyType.Dynamic;
-            leftWheel.Position = ConvertUnits.ToSimUnits(carStartingPos + leftFrontWheelPosition);
+            /*     leftWheel = new Body(world);
+                 leftWheel.BodyType = BodyType.Dynamic;
+                 leftWheel.Position = ConvertUnits.ToSimUnits(carStartingPos + leftFrontWheelPosition);
 
-            rightWheel = new Body(world);
-            rightWheel.BodyType = BodyType.Dynamic;
-            rightWheel.Position = ConvertUnits.ToSimUnits(carStartingPos + rightFrontWheelPosition);
+                 rightWheel = new Body(world);
+                 rightWheel.BodyType = BodyType.Dynamic;
+                 rightWheel.Position = ConvertUnits.ToSimUnits(carStartingPos + rightFrontWheelPosition);
 
-            leftRearWheel = new Body(world);
-            leftRearWheel.BodyType = BodyType.Dynamic;
-            leftRearWheel.Position = ConvertUnits.ToSimUnits(carStartingPos + leftRearWheelPosition);
+                 leftRearWheel = new Body(world);
+                 leftRearWheel.BodyType = BodyType.Dynamic;
+                 leftRearWheel.Position = ConvertUnits.ToSimUnits(carStartingPos + leftRearWheelPosition);
 
-            rightRearWheel = new Body(world);
-            rightRearWheel.BodyType = BodyType.Dynamic;
-            rightRearWheel.Position = ConvertUnits.ToSimUnits(carStartingPos + rightRearWheelPosition);
-
-
-            //defining shapes
-
-            PolygonShape box = new PolygonShape(PolygonTools.CreateRectangle(1.5f,2.5f),0f);
-            body.CreateFixture(box);
-
-            PolygonShape leftWheelShape = new PolygonShape(PolygonTools.CreateRectangle(0.2f, 0.5f), 0f);
-            body.CreateFixture(leftWheelShape);
-            PolygonShape rightWheelShape = new PolygonShape(PolygonTools.CreateRectangle(0.2f, 0.5f), 0f);
-            body.CreateFixture(rightWheelShape);
-            PolygonShape leftRareWheelShape = new PolygonShape(PolygonTools.CreateRectangle(0.2f, 0.5f), 0f);
-            body.CreateFixture(leftRareWheelShape);
-            PolygonShape rightRearWheelShape = new PolygonShape(PolygonTools.CreateRectangle(0.2f, 0.5f), 0f);
-            body.CreateFixture(rightRearWheelShape);
+                 rightRearWheel = new Body(world);
+                 rightRearWheel.BodyType = BodyType.Dynamic;
+                 rightRearWheel.Position = ConvertUnits.ToSimUnits(carStartingPos + rightRearWheelPosition);
 
 
-            leftJoint = new RevoluteJoint(body, leftWheel, body.GetLocalPoint(leftWheel.Position), Vector2.Zero);
-            leftJoint.MotorEnabled = true;
-            leftJoint.MaxMotorTorque = 100;
-            world.AddJoint(leftJoint);
+                 //defining shapes
+
+                 PolygonShape box = new PolygonShape(PolygonTools.CreateRectangle(1.5f,2.5f),0f);
+                 body.CreateFixture(box);
+
+                 PolygonShape leftWheelShape = new PolygonShape(PolygonTools.CreateRectangle(0.2f, 0.5f), 0f);
+                 body.CreateFixture(leftWheelShape);
+                 PolygonShape rightWheelShape = new PolygonShape(PolygonTools.CreateRectangle(0.2f, 0.5f), 0f);
+                 body.CreateFixture(rightWheelShape);
+                 PolygonShape leftRareWheelShape = new PolygonShape(PolygonTools.CreateRectangle(0.2f, 0.5f), 0f);
+                 body.CreateFixture(leftRareWheelShape);
+                 PolygonShape rightRearWheelShape = new PolygonShape(PolygonTools.CreateRectangle(0.2f, 0.5f), 0f);
+                 body.CreateFixture(rightRearWheelShape);
 
 
-            rightJoint = new RevoluteJoint(body, rightWheel, body.GetLocalPoint(rightWheel.Position), Vector2.Zero);
-            rightJoint.MotorEnabled = true;
-            rightJoint.MaxMotorTorque = 100;
-            world.AddJoint(rightJoint);
+                 leftJoint = new RevoluteJoint(body, leftWheel, body.GetLocalPoint(leftWheel.Position), Vector2.Zero);
+                 leftJoint.MotorEnabled = true;
+                 leftJoint.MaxMotorTorque = 100;
+                 world.AddJoint(leftJoint);
 
-            PrismaticJoint leftRearJoint = new PrismaticJoint(body, leftRearWheel, leftRearWheelPosition, Vector2.Zero, new Vector2(1, 0));
-            leftRearJoint.LimitEnabled = true;
-            leftRearJoint.LowerLimit = leftRearJoint.UpperLimit = 0;
-            world.AddJoint(leftRearJoint);
-            PrismaticJoint rightRearJoint = new PrismaticJoint(body, rightRearWheel, rightRearWheelPosition, Vector2.Zero, new Vector2(1, 0));
-            rightRearJoint.LimitEnabled = true;
-            rightRearJoint.LowerLimit = rightRearJoint.UpperLimit = 0;
-            world.AddJoint(rightRearJoint); */
+
+                 rightJoint = new RevoluteJoint(body, rightWheel, body.GetLocalPoint(rightWheel.Position), Vector2.Zero);
+                 rightJoint.MotorEnabled = true;
+                 rightJoint.MaxMotorTorque = 100;
+                 world.AddJoint(rightJoint);
+
+                 PrismaticJoint leftRearJoint = new PrismaticJoint(body, leftRearWheel, leftRearWheelPosition, Vector2.Zero, new Vector2(1, 0));
+                 leftRearJoint.LimitEnabled = true;
+                 leftRearJoint.LowerLimit = leftRearJoint.UpperLimit = 0;
+                 world.AddJoint(leftRearJoint);
+                 PrismaticJoint rightRearJoint = new PrismaticJoint(body, rightRearWheel, rightRearWheelPosition, Vector2.Zero, new Vector2(1, 0));
+                 rightRearJoint.LimitEnabled = true;
+                 rightRearJoint.LowerLimit = rightRearJoint.UpperLimit = 0;
+                 world.AddJoint(rightRearJoint); */
 
 
         }
@@ -235,49 +245,41 @@ namespace Idk
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Down))
             {
-                if (!direction.Equals("down"))
+                body.ApplyForce(new Vector2(0, 0.1f), body.WorldCenter);
+             /*   if (!direction.Equals("down"))
                 {
-                    direction = "down";
+                   // direction = "down";
                     
-                    body.ApplyForce(new Vector2(0,0.1f), body.WorldCenter);
+                   
                    // engineSpeed = Horsepower;
                 }
                 //car1.Update(direction);
+                */
 
             }
             if (Keyboard.GetState().IsKeyDown(Keys.Up))
             {
-                if (!direction.Equals("up"))
-                {
-                    body.ApplyForce(new Vector2(0,-0.1f),body.WorldCenter);
+                    body.ApplyForce(new Vector2(0,-0.2f),body.WorldCenter);
                     Console.WriteLine(body.Position);
 
                     //engineSpeed = -Horsepower;
 
-                }
                // car1.Update(direction);
 
             }
             if (Keyboard.GetState().IsKeyDown(Keys.Left))
             {
-                if (!direction.Equals("left"))
-                {
-                    body.ApplyForce(new Vector2(0, 1), body.WorldCenter);
-                    direction = "left";
-                    steeringAngle = -MaxSteerAngle;
+                steeringAngle -= 0.005f;
 
                 }
              //   car1.Update(direction);
 
-            }
             if (Keyboard.GetState().IsKeyDown(Keys.Right))
             {
-                if (!direction.Equals("right"))
-                {
-                    steeringAngle = MaxSteerAngle;
+                steeringAngle += 0.005f;
                     direction = "right";
 
-                }
+           
               //  car1.Update(direction);
 
             }
@@ -338,9 +340,10 @@ namespace Idk
             Vector2 vec = ConvertUnits.ToDisplayUnits(body.Position);
             int x = (int)vec.X;
             int y = (int)vec.Y;
-           
+            Vector2 origin = new Vector2(taxi.Width / 2, taxi.Height / 2);
 
-            spriteBatch.Draw(taxi, new Rectangle(x, y, taxi.Width, taxi.Height),Color.White);
+            spriteBatch.Draw(background, new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight), Color.White);
+            spriteBatch.Draw(taxi, vec, new Rectangle(0, 0, taxi.Width, taxi.Height),Color.White,steeringAngle,origin,1.0f,SpriteEffects.None,1);
             //car2.Draw(spriteBatch);
             spriteBatch.End();
 
