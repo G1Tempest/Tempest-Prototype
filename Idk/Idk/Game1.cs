@@ -75,7 +75,7 @@ namespace Idk
             //taxi = Content.Load<Texture2D>("Taxi");
             background = Content.Load<Texture2D>("Background");
             foreground = Content.Load<Texture2D>("Foreground");
-            Texture2D carsSpriteSheet = Content.Load<Texture2D>("Motor_Mania");
+            Texture2D carsSpriteSheet = Content.Load<Texture2D>("Cars");
             car1 = new AnimatedSprite(carsSpriteSheet, 3, 6, car1StartingPos,world);
             car2 = new AnimatedSprite(carsSpriteSheet, 3, 6, car2StartingPos, world);
 
@@ -163,9 +163,7 @@ namespace Idk
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            //GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
-            //        car1.Draw(spriteBatch);
 
 
             spriteBatch.Draw(background, new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight), Color.White);
@@ -184,7 +182,7 @@ namespace Idk
                                                 graphics.GraphicsDevice.Viewport.Height / 2f) / MeterInPixels), 0f)) * Matrix.CreateTranslation(new Vector3((new Vector2(graphics.GraphicsDevice.Viewport.Width / 2f,
                                                 graphics.GraphicsDevice.Viewport.Height / 2f) / MeterInPixels), 0f));
             // draw the debug view
-           // _debugView.RenderDebugData(ref projection);
+            //_debugView.RenderDebugData(ref projection);
 
 
 

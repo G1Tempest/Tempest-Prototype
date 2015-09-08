@@ -59,7 +59,7 @@ namespace Idk
             player1.LinearDamping = 5;
             player1.AngularDamping = 150;
             player1.Friction = 5;
-            player1.Restitution = -5;
+            player1.Restitution = 5;
             player1.Mass = 3;
             player1.OnCollision += MyOnCollision;
         }
@@ -86,11 +86,11 @@ namespace Idk
                         player1.ApplyForce(AngleToVector(player1.Rotation, "down"), player1.WorldCenter);
                         break;
                     case 3:
-                        player1.Rotation -= 0.015f;
+                        player1.Rotation -= 0.030f;
                         currentFrame = (int)OrangeCar.Left;
                         break;
                     case 4:
-                        player1.Rotation += 0.015f;
+                        player1.Rotation += 0.030f;
                         currentFrame = (int)OrangeCar.Right;
                         break;
                 }
@@ -109,11 +109,11 @@ namespace Idk
                         player1.ApplyForce(AngleToVector(player1.Rotation, "down"), player1.WorldCenter);
                         break;
                     case 3:
-                        player1.Rotation -= 0.015f;
+                        player1.Rotation -= 0.030f;
                         currentFrame = (int)RedCar.Left;
                         break;
                     case 4:
-                        player1.Rotation += 0.015f;
+                        player1.Rotation += 0.030f;
                         currentFrame = (int)RedCar.Right;
                         break;
                 }
@@ -125,12 +125,12 @@ namespace Idk
         {
             if (dir.Equals("up"))
             {
-                Vector2 normalVec = new Vector2((float)Math.Sin(rotation)*15f, -(float)Math.Cos(rotation)*15f);
+                Vector2 normalVec = new Vector2((float)Math.Sin(rotation)*30f, -(float)Math.Cos(rotation)*30f);
                 return normalVec;
             }
             else
             {
-                Vector2 normalVec = new Vector2(-(float)Math.Sin(rotation)*15f, (float)Math.Cos(rotation)*15f);
+                Vector2 normalVec = new Vector2(-(float)Math.Sin(rotation)*30f, (float)Math.Cos(rotation)*30f);
                 return normalVec;
             }
 

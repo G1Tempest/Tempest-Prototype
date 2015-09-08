@@ -67,7 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Background.png" />
-    <Content Include="Content\car.png" />
+    <Content Include="Content\Cars.png" />
     <Content Include="Content\Foreground.png" />
     <Content Include="Content\Motor_Mania.png" />
     <Content Include="Content\Taxi.png" />
