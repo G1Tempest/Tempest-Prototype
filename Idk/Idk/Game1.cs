@@ -25,6 +25,8 @@ namespace Idk
         private SpriteBatch _batch;
         private SpriteFont _font;
         Texture2D foreground;
+        Texture2D boxTex;
+        BoxPlatform boxPlatform;
 
         //debug view objects
         DebugViewXNA _debugView;
@@ -35,8 +37,8 @@ namespace Idk
 
 
         //Physics parameters
-        Vector2 car1StartingPos = new Vector2(960.0f, 540.0f);
-        Vector2 car2StartingPos = new Vector2(200.0f, 200.0f);
+        Vector2 car1StartingPos = new Vector2(1700.0f, 200.0f);
+        Vector2 car2StartingPos = new Vector2(300.0f, 200.0f);
 
 
         public Game1()
@@ -75,9 +77,12 @@ namespace Idk
             //taxi = Content.Load<Texture2D>("Taxi");
             background = Content.Load<Texture2D>("Background");
             foreground = Content.Load<Texture2D>("Foreground");
-            Texture2D carsSpriteSheet = Content.Load<Texture2D>("Cars");
+            boxTex = Content.Load<Texture2D>("ToyBox");
+            Texture2D carsSpriteSheet = Content.Load<Texture2D>("Cars_test");
             car1 = new AnimatedSprite(carsSpriteSheet, 3, 6, car1StartingPos,world);
             car2 = new AnimatedSprite(carsSpriteSheet, 3, 6, car2StartingPos, world);
+            boxPlatform = new BoxPlatform(boxTex, new Vector2(650, 350), world);
+
 
 
             //DebugViewXNA view objects
@@ -171,6 +176,7 @@ namespace Idk
             // spriteBatch.Draw(taxi, vec, new Rectangle(0, 0, taxi.Width, taxi.Height), Color.White,ConvertUnits.ToDisplayUnits(player1.Rotation),origin,1.0f,SpriteEffects.None,1);
             car1.Draw(spriteBatch);
            car2.Draw(spriteBatch);
+            boxPlatform.Draw(spriteBatch);
             spriteBatch.End();
 
             //debug view draw
@@ -182,7 +188,7 @@ namespace Idk
                                                 graphics.GraphicsDevice.Viewport.Height / 2f) / MeterInPixels), 0f)) * Matrix.CreateTranslation(new Vector3((new Vector2(graphics.GraphicsDevice.Viewport.Width / 2f,
                                                 graphics.GraphicsDevice.Viewport.Height / 2f) / MeterInPixels), 0f));
             // draw the debug view
-            //_debugView.RenderDebugData(ref projection);
+           // _debugView.RenderDebugData(ref projection);
 
 
 

@@ -67,10 +67,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Background.png" />
-    <Content Include="Content\Cars.png" />
+    <Content Include="Content\Cars_test.png" />
     <Content Include="Content\Foreground.png" />
     <Content Include="Content\Motor_Mania.png" />
     <Content Include="Content\Taxi.png" />
+    <Content Include="Content\ToyBox.png" />
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>
