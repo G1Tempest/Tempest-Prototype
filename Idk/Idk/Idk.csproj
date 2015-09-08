@@ -43,14 +43,21 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="AnimatedSprite.cs" />
+    <Compile Include="BoxPlatfom.cs" />
+    <Compile Include="Cars.cs" />
+    <Compile Include="CoffeeMug.cs" />
     <Compile Include="ConvertUnits.cs" />
+    <Compile Include="CopCar.cs" />
+    <Compile Include="DebugViewXNA.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="PencilWall.cs" />
+    <Compile Include="PrimitiveBatch.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Farseer Engine MonoGame OpenGL">
-      <HintPath>..\Farseer Engine MonoGame OpenGL\bin\Debug\Farseer Engine MonoGame OpenGL.dll</HintPath>
+    <Reference Include="FarseerPhysics MonoGame">
+      <HintPath>..\..\..\Downloads\Farseer Physics Engine 3.5\Farseer Physics Engine 3.5\bin\WindowsGL\Debug\FarseerPhysics MonoGame.dll</HintPath>
     </Reference>
     <Reference Include="MonoGame.Framework">
       <HintPath>$(MSBuildProgramFiles32)\MonoGame\v3.0\Assemblies\Windows\MonoGame.Framework.dll</HintPath>
@@ -59,8 +66,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Background_TEMP.png" />
+    <Content Include="Content\Background.png" />
     <Content Include="Content\car.png" />
+    <Content Include="Content\Foreground.png" />
+    <Content Include="Content\Motor_Mania.png" />
     <Content Include="Content\Taxi.png" />
     <Content Include="Icon.ico" />
   </ItemGroup>
@@ -69,6 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Content\font.spritefont" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

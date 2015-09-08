@@ -8,5 +8,6 @@ C:\Users\u1006341\farseerMono3.3.1\Farseer-MonoGame-WinGL\Farseer Engine MonoGam
 C:\Users\u1006341\farseerMono3.3.1\Farseer-MonoGame-WinGL\Farseer Engine MonoGame OpenGL\obj\Debug\Farseer Engine MonoGame OpenGL.pdb
 C:\Users\u1006341\Idontknow\Idk\Farseer Engine MonoGame OpenGL\bin\Debug\Farseer Engine MonoGame OpenGL.dll
 C:\Users\u1006341\Idontknow\Idk\Farseer Engine MonoGame OpenGL\bin\Debug\Farseer Engine MonoGame OpenGL.pdb
+C:\Users\u1006341\Idontknow\Idk\Farseer Engine MonoGame OpenGL\obj\Debug\Farseer Engine MonoGame OpenGL.csprojResolveAssemblyReference.cache
 C:\Users\u1006341\Idontknow\Idk\Farseer Engine MonoGame OpenGL\obj\Debug\Farseer Engine MonoGame OpenGL.dll
 C:\Users\u1006341\Idontknow\Idk\Farseer Engine MonoGame OpenGL\obj\Debug\Farseer Engine MonoGame OpenGL.pdb
