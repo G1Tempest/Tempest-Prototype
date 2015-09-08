@@ -27,6 +27,7 @@ namespace Idk
         Texture2D foreground;
         Texture2D boxTex;
         BoxPlatform boxPlatform;
+        ScrollingBackground myBackground;
 
         //debug view objects
         DebugViewXNA _debugView;
@@ -75,10 +76,13 @@ namespace Idk
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             //taxi = Content.Load<Texture2D>("Taxi");
-            background = Content.Load<Texture2D>("Background");
+            background = Content.Load<Texture2D>("Lava_Scrolling_Bkrnd_2048");
             foreground = Content.Load<Texture2D>("Foreground");
             boxTex = Content.Load<Texture2D>("ToyBox");
             Texture2D carsSpriteSheet = Content.Load<Texture2D>("Cars_test");
+            myBackground = new ScrollingBackground();
+            myBackground.Load(GraphicsDevice, background);
+
             car1 = new AnimatedSprite(carsSpriteSheet, 3, 6, car1StartingPos,world);
             car2 = new AnimatedSprite(carsSpriteSheet, 3, 6, car2StartingPos, world);
             boxPlatform = new BoxPlatform(boxTex, new Vector2(650, 350), world);
@@ -121,6 +125,7 @@ namespace Idk
             car1.Position = ConvertUnits.ToDisplayUnits(car1.player1.Position);
             car2.Position = ConvertUnits.ToDisplayUnits(car2.player1.Position);
             timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            myBackground.Update(0.3f);
             if(timer>=1.0f)
             {
                 if(Keyboard.GetState().IsKeyDown(Keys.Up))
@@ -171,7 +176,8 @@ namespace Idk
             spriteBatch.Begin();
 
 
-            spriteBatch.Draw(background, new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight), Color.White);
+            myBackground.Draw(spriteBatch);
+            //spriteBatch.Draw(background, new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight), Color.White);
             spriteBatch.Draw(foreground, new Rectangle(50, 50, graphics.PreferredBackBufferWidth-100, graphics.PreferredBackBufferHeight-100), Color.White);
             // spriteBatch.Draw(taxi, vec, new Rectangle(0, 0, taxi.Width, taxi.Height), Color.White,ConvertUnits.ToDisplayUnits(player1.Rotation),origin,1.0f,SpriteEffects.None,1);
             car1.Draw(spriteBatch);

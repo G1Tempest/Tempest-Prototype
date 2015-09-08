@@ -54,8 +54,9 @@ namespace Idk
             player1.LinearDamping = 5;
             player1.AngularDamping = 150;
             player1.Friction = 5;
-            player1.Restitution = 3;
+            player1.Restitution = 2;
             player1.Mass = 3;
+            player1.LinearVelocity = Vector2.Zero;
             player1.OnCollision += MyOnCollision;
         }
 
@@ -81,12 +82,18 @@ namespace Idk
                         player1.ApplyForce(AngleToVector(player1.Rotation, "down"), player1.WorldCenter);
                         break;
                     case 3:
-                        player1.Rotation -= 0.050f;
-                        currentFrame = (int)OrangeCar.Left;
+                        if (player1.LinearVelocity.Length() > 0)
+                        {
+                            player1.Rotation -= 0.050f;
+                            currentFrame = (int)OrangeCar.Left;
+                        }
                         break;
                     case 4:
-                        player1.Rotation += 0.050f;
-                        currentFrame = (int)OrangeCar.Right;
+                        if (player1.LinearVelocity.Length() > 0)
+                        {
+                            player1.Rotation += 0.050f;
+                            currentFrame = (int)OrangeCar.Right;
+                        }
                         break;
                 }
             }
@@ -104,11 +111,20 @@ namespace Idk
                         player1.ApplyForce(AngleToVector(player1.Rotation, "down"), player1.WorldCenter);
                         break;
                     case 3:
-                        player1.Rotation -= 0.050f;
+                        if (player1.LinearVelocity.Length()>0)
+                        {
+                            player1.Rotation -= 0.050f;
+                            
+                           
+                        }
                         currentFrame = (int)RedCar.Left;
                         break;
                     case 4:
-                        player1.Rotation += 0.050f;
+                        if (player1.LinearVelocity.Length() > 0)
+                        {
+                            player1.Rotation += 0.050f;
+                           
+                        }
                         currentFrame = (int)RedCar.Right;
                         break;
                 }
