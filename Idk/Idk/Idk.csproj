@@ -67,12 +67,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Cars_test.png" />
-    <Content Include="Content\Foreground.png" />
-    <Content Include="Content\Lava_Scrolling_Bkrnd_2048.png" />
-    <Content Include="Content\Motor_Mania.png" />
-    <Content Include="Content\Taxi.png" />
-    <Content Include="Content\ToyBox.png" />
+    <Content Include="Content\Sounds\Car_Crash001.wav" />
+    <Content Include="Content\Sounds\Car_Crash002.wav" />
+    <Content Include="Content\Sounds\Car_Crash003.wav" />
+    <Content Include="Content\Sounds\In_Game.mp3" />
+    <Content Include="Content\Sounds\Menu_Song_mixdown.mp3" />
+    <Content Include="Content\Sprites\Bottom_Pencil.png" />
+    <Content Include="Content\Sprites\Cars_test.png" />
+    <Content Include="Content\Sprites\Foreground.png" />
+    <Content Include="Content\Sprites\Lava_Scrolling_Bkrnd_2048.png" />
+    <Content Include="Content\Sprites\Motor_Mania.png" />
+    <Content Include="Content\Sprites\Taxi.png" />
+    <Content Include="Content\Sprites\ToyBox.png" />
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -80,9 +86,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Content\font.spritefont" />
+    <None Include="Content\Sprites\font.spritefont" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

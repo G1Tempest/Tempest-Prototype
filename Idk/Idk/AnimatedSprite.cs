@@ -5,6 +5,7 @@ using FarseerPhysics.Dynamics;
 using FarseerPhysics.SamplesFramework;
 using FarseerPhysics.Factories;
 using FarseerPhysics.Dynamics.Contacts;
+using Microsoft.Xna.Framework.Audio;
 
 namespace Idk
 {
@@ -57,14 +58,10 @@ namespace Idk
             player1.Restitution = 2;
             player1.Mass = 3;
             player1.LinearVelocity = Vector2.Zero;
-            player1.OnCollision += MyOnCollision;
+            
         }
 
-        private bool MyOnCollision(Fixture fixtureA, Fixture fixtureB, Contact contact)
-        {
-            
-            return true;
-        }
+
 
         public void handleInput(int input,String player)
 
@@ -136,12 +133,12 @@ namespace Idk
         {
             if (dir.Equals("up"))
             {
-                Vector2 normalVec = new Vector2((float)Math.Sin(rotation)*75f, -(float)Math.Cos(rotation)*75f);
+                Vector2 normalVec = new Vector2((float)Math.Sin(rotation)*70f, -(float)Math.Cos(rotation)*70f);
                 return normalVec;
             }
             else
             {
-                Vector2 normalVec = new Vector2(-(float)Math.Sin(rotation)*75f, (float)Math.Cos(rotation)*75f);
+                Vector2 normalVec = new Vector2(-(float)Math.Sin(rotation)*70f, (float)Math.Cos(rotation)*70f);
                 return normalVec;
             }
 

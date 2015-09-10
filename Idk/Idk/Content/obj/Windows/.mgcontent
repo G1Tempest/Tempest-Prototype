@@ -4,12 +4,18 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/u1006341/Idontknow/Idk/Idk/Content/Taxi.png</File>
-    <File>C:/Users/u1006341/Idontknow/Idk/Idk/Content/Motor_Mania.png</File>
-    <File>C:/Users/u1006341/Idontknow/Idk/Idk/Content/font.spritefont</File>
-    <File>C:/Users/u1006341/Idontknow/Idk/Idk/Content/Foreground.png</File>
-    <File>C:/Users/u1006341/Idontknow/Idk/Idk/Content/Cars_test.png</File>
-    <File>C:/Users/u1006341/Idontknow/Idk/Idk/Content/ToyBox.png</File>
-    <File>C:/Users/u1006341/Idontknow/Idk/Idk/Content/Lava_Scrolling_Bkrnd_2048.png</File>
+    <File>C:/Users/u1006341/Idontknow/Idk/Idk/Content/Sprites/Cars_test.png</File>
+    <File>C:/Users/u1006341/Idontknow/Idk/Idk/Content/Sprites/font.spritefont</File>
+    <File>C:/Users/u1006341/Idontknow/Idk/Idk/Content/Sprites/Foreground.png</File>
+    <File>C:/Users/u1006341/Idontknow/Idk/Idk/Content/Sprites/Lava_Scrolling_Bkrnd_2048.png</File>
+    <File>C:/Users/u1006341/Idontknow/Idk/Idk/Content/Sprites/Motor_Mania.png</File>
+    <File>C:/Users/u1006341/Idontknow/Idk/Idk/Content/Sprites/Taxi.png</File>
+    <File>C:/Users/u1006341/Idontknow/Idk/Idk/Content/Sprites/ToyBox.png</File>
+    <File>C:/Users/u1006341/Idontknow/Idk/Idk/Content/Sounds/In_Game.mp3</File>
+    <File>C:/Users/u1006341/Idontknow/Idk/Idk/Content/Sounds/Menu_Song_mixdown.mp3</File>
+    <File>C:/Users/u1006341/Idontknow/Idk/Idk/Content/Sounds/Car_Crash002.wav</File>
+    <File>C:/Users/u1006341/Idontknow/Idk/Idk/Content/Sounds/Car_Crash003.wav</File>
+    <File>C:/Users/u1006341/Idontknow/Idk/Idk/Content/Sounds/Car_Crash001.wav</File>
+    <File>C:/Users/u1006341/Idontknow/Idk/Idk/Content/Sprites/Bottom_Pencil.png</File>
   </SourceFiles>
 </SourceFileCollection>
