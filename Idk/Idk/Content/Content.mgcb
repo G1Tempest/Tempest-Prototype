@@ -126,3 +126,14 @@
 /processorParam:TextureFormat=Color
 /build:Sprites/Bottom_Pencil.png
 
+#begin Sprites/Side_Pencil.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:TextureFormat=Color
+/build:Sprites/Side_Pencil.png
+
