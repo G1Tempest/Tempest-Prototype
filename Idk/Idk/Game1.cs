@@ -11,6 +11,8 @@ using Microsoft.Xna.Framework.Audio;
 using FarseerPhysics.Dynamics.Contacts;
 using System;
 using System.Collections.Generic;
+using FarseerPhysics.Common;
+using FarseerPhysics.Collision;
 
 namespace Idk
 {
@@ -32,11 +34,14 @@ namespace Idk
         Texture2D foreground;
         Texture2D boxTex;
         BoxPlatform boxPlatform;
+        Texture2D collisionSpark;
+        Vector2 collisionPoint;
         ScrollingBackground myBackground;
         PencilWall[] pencilWallTop;
         PencilWall[] pencilWallBot;
         PencilWall[] pencilWallLeft;
         PencilWall[] pencilWallRight;
+        bool drawSpark = false;
 
         //music stuff
         protected Song song;
@@ -100,7 +105,7 @@ namespace Idk
             isActive = false;
             ScreenList.Add(new FirstScreen(MenuSong,font));
             ScreenList[0].setActive(true);
-            firstbackground = Content.Load<Texture2D>("Sprites/ToyBox");
+            firstbackground = Content.Load<Texture2D>("Sprites/Start_Screen_Background");
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
@@ -116,37 +121,35 @@ namespace Idk
             pencilTex = Content.Load<Texture2D>("Sprites/Bottom_pencil");
             pencilTexSide = Content.Load<Texture2D>("Sprites/Side_Pencil");
             pencilWallTop = new PencilWall[5];
-            pencilWallTop[0] = new PencilWall(pencilTex, new Vector2(125, 100), world);
-            pencilWallTop[1]= new PencilWall(pencilTex, new Vector2(455, 100), world);
-            pencilWallTop[2] = new PencilWall(pencilTex, new Vector2(785, 100), world);
-            pencilWallTop[3] = new PencilWall(pencilTex, new Vector2(1125, 100), world);
-            pencilWallTop[4] = new PencilWall(pencilTex, new Vector2(1445, 100), world);
+            pencilWallTop[0] = new PencilWall(pencilTex, new Vector2(125, 100), world, "up");
+            pencilWallTop[1] = new PencilWall(pencilTex, new Vector2(455, 100), world, "up");
+            pencilWallTop[2] = new PencilWall(pencilTex, new Vector2(785, 100), world, "up");
+            pencilWallTop[3] = new PencilWall(pencilTex, new Vector2(1125, 100), world, "up");
+            pencilWallTop[4] = new PencilWall(pencilTex, new Vector2(1445, 100), world, "up");
+
 
             //PencilWalls Bot
             pencilWallBot = new PencilWall[5];
 
-            pencilWallBot[0] = new PencilWall(pencilTex, new Vector2(125, 950), world);
-
-            pencilWallBot[1] = new PencilWall(pencilTex, new Vector2(455, 950), world);
-
-            pencilWallBot[2] = new PencilWall(pencilTex, new Vector2(785, 950), world);
-
-            pencilWallBot[3] = new PencilWall(pencilTex, new Vector2(1125, 950), world);
-
-            pencilWallBot[4] = new PencilWall(pencilTex, new Vector2(1445, 950), world);
+            pencilWallBot[0] = new PencilWall(pencilTex, new Vector2(125, 950), world, "down");
+            pencilWallBot[1] = new PencilWall(pencilTex, new Vector2(455, 950), world, "down");
+            pencilWallBot[2] = new PencilWall(pencilTex, new Vector2(785, 950), world, "down");
+            pencilWallBot[3] = new PencilWall(pencilTex, new Vector2(1125, 950), world, "down");
+            pencilWallBot[4] = new PencilWall(pencilTex, new Vector2(1445, 950), world, "down");
 
             //PencilWalls Left
             pencilWallLeft = new PencilWall[3];
-            pencilWallLeft[0]= new PencilWall(pencilTexSide, new Vector2(100, 130), world);
-            pencilWallLeft[1] = new PencilWall(pencilTexSide, new Vector2(100, 410), world);
-            pencilWallLeft[2] = new PencilWall(pencilTexSide, new Vector2(100, 690), world);
+            pencilWallLeft[0] = new PencilWall(pencilTexSide, new Vector2(100, 130), world, "left");
+            pencilWallLeft[1] = new PencilWall(pencilTexSide, new Vector2(100, 410), world, "left");
+            pencilWallLeft[2] = new PencilWall(pencilTexSide, new Vector2(100, 690), world, "left");
 
             pencilWallRight = new PencilWall[3];
-            pencilWallRight[0] = new PencilWall(pencilTexSide, new Vector2(1775, 130), world);
-            pencilWallRight[1] = new PencilWall(pencilTexSide, new Vector2(1775, 410), world);
-            pencilWallRight[2] = new PencilWall(pencilTexSide, new Vector2(1775, 690), world);
+            pencilWallRight[0] = new PencilWall(pencilTexSide, new Vector2(1775, 130), world, "right");
+            pencilWallRight[1] = new PencilWall(pencilTexSide, new Vector2(1775, 410), world, "right");
+            pencilWallRight[2] = new PencilWall(pencilTexSide, new Vector2(1775, 690), world, "right");
 
-
+            //collision spark
+            collisionSpark = Content.Load<Texture2D>("Sprites/SINGLE_Spark_Sprite_Sheet");
 
             //Background music
             effect = new SoundEffect[3];
@@ -178,6 +181,10 @@ namespace Idk
         }
         private bool MyOnCollision(Fixture fixtureA, Fixture fixtureB, Contact contact)
         {
+          FixedArray2<ManifoldPoint> fa2 = contact.Manifold.Points;
+            collisionPoint = ConvertUnits.ToDisplayUnits(fa2[0].LocalPoint);
+            drawSpark = true;
+
             Random randomSound = new Random();
             effect[randomSound.Next(3)].Play();
             return true;
@@ -247,11 +254,28 @@ namespace Idk
                     car2.handleInput(4, "Player1");
 
             }
-
-
+         RemoveFallenObjects();
             // TODO: Add your update logic here
             world.Step((float)gameTime.ElapsedGameTime.TotalSeconds);
             base.Update(gameTime);
+        }
+
+        private void RemoveFallenObjects()
+        {
+            //check if cars are on the table
+            Vector2 car1Pos= car1.player1.Position;
+            Vector2 car2Pos = car1.player1.Position;
+        }
+
+        private bool isBodyOnTable(Vector2 position)
+        {
+            if(position.X<100.0f || position.X>1550.0f)
+
+                return false;
+          /*  if(position.Y < 130.0f || position.Y > 800.0f)
+                return false;*/
+            return true;
+
         }
 
         private void playGameMusic()
@@ -290,7 +314,7 @@ namespace Idk
                 // spriteBatch.Draw(taxi, vec, new Rectangle(0, 0, taxi.Width, taxi.Height), Color.White,ConvertUnits.ToDisplayUnits(player1.Rotation),origin,1.0f,SpriteEffects.None,1);
                 car1.Draw(spriteBatch);
                 car2.Draw(spriteBatch);
-                boxPlatform.Draw(spriteBatch);
+              //  boxPlatform.Draw(spriteBatch);
                 pencilWallTop[0].Draw(spriteBatch);
                 pencilWallTop[1].Draw(spriteBatch);
                 pencilWallTop[2].Draw(spriteBatch);
@@ -320,6 +344,14 @@ namespace Idk
                 pencilWallRight[1].Draw(spriteBatch);
                 pencilWallRight[2].Draw(spriteBatch);
 
+                //draw collisionspark if drawSpark
+                if (drawSpark)
+                {
+                    drawSpark = false;
+                    spriteBatch.Draw(collisionSpark, new Rectangle((int)collisionPoint.X, (int)collisionPoint.Y, collisionSpark.Width,collisionSpark.Height), Color.White);
+
+                }
+
                 spriteBatch.End();
 
                 //debug view draw
@@ -331,7 +363,7 @@ namespace Idk
                                            //          graphics.GraphicsDevice.Viewport.Height / 2f) / MeterInPixels), 0f)) * Matrix.CreateTranslation(new Vector3((new Vector2(graphics.GraphicsDevice.Viewport.Width / 2f,
                                              //        graphics.GraphicsDevice.Viewport.Height / 2f) / MeterInPixels), 0f));
                 // draw the debug view
-                // _debugView.RenderDebugData(ref projection);
+                 _debugView.RenderDebugData(ref projection);
 
 
 

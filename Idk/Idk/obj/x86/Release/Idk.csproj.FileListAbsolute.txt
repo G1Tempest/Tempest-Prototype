@@ -1,9 +1,7 @@
 C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\Idk.exe.config
-C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\Content\car.xnb
 C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\Content\Taxi.xnb
 C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\Idk.exe
 C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\Idk.pdb
-C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\Farseer Engine MonoGame OpenGL.dll
 C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\MonoGame.Framework.dll
 C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\SharpDX.MediaFoundation.dll
 C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\SharpDX.dll
@@ -14,10 +12,7 @@ C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\SharpDX.Direct2D1.dll
 C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\SharpDX.XInput.dll
 C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\SharpDX.RawInput.dll
 C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\OpenTK.dll
-C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\Lidgren.Network.dll
-C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\Tao.Sdl.dll
 C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\SharpDX.Direct3D9.dll
-C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\Farseer Engine MonoGame OpenGL.pdb
 C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\MonoGame.Framework.xml
 C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\SharpDX.MediaFoundation.xml
 C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\SharpDX.xml
@@ -28,7 +23,33 @@ C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\SharpDX.Direct2D1.xml
 C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\SharpDX.XInput.xml
 C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\SharpDX.RawInput.xml
 C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\SharpDX.Direct3D9.xml
-C:\Users\u1006341\Idontknow\Idk\Idk\obj\x86\Release\Idk.csprojResolveAssemblyReference.cache
 C:\Users\u1006341\Idontknow\Idk\Idk\obj\x86\Release\Idk.exe
 C:\Users\u1006341\Idontknow\Idk\Idk\obj\x86\Release\Idk.pdb
-C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\Content\Background_TEMP.xnb
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\Content\Cars_test.xnb
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\Content\font.xnb
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\Content\Foreground.xnb
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\Content\Lava_Scrolling_Bkrnd_2048.xnb
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\Content\Motor_Mania.xnb
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\Content\Sounds\Car_Crash001.xnb
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\Content\Sounds\Car_Crash002.xnb
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\Content\Sounds\Car_Crash003.xnb
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\Content\Sounds\In_Game.wma
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\Content\Sounds\In_Game.xnb
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\Content\Sounds\Menu_Song_mixdown.wma
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\Content\Sounds\Menu_Song_mixdown.xnb
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\Content\Sprites\Bottom_Pencil.xnb
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\Content\Sprites\Cars_test.xnb
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\Content\Sprites\font.xnb
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\Content\Sprites\Foreground.xnb
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\Content\Sprites\Lava_Scrolling_Bkrnd_2048.xnb
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\Content\Sprites\Motor_Mania.xnb
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\Content\Sprites\Side_Pencil.xnb
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\Content\Sprites\Start_Screen_Background.xnb
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\Content\Sprites\Taxi.xnb
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\Content\Sprites\ToyBox.xnb
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\Content\ToyBox.xnb
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\FarseerPhysics MonoGame.dll
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\FarseerPhysics MonoGame.pdb
+C:\Users\u1006341\Idontknow\Idk\Idk\obj\x86\Release\Idk.csprojResolveAssemblyReference.cache
+C:\Users\u1006341\Idontknow\Idk\Idk\obj\x86\Release\Idk.exe.manifest
+C:\Users\u1006341\Idontknow\Idk\Idk\obj\x86\Release\Idk.TrustInfo.xml
