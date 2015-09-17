@@ -9,12 +9,48 @@ using Microsoft.Xna.Framework.Audio;
 
 namespace Idk
 {
-    enum BlueCar{Front=0,Left=1,Right=2 };
-    enum WhiteCar { Front = 3, Left = 4, Right = 5 };
-  //  enum CopCar { Front = 6, Left = 7, Right = 8 };
-    enum OrangeCar { Front = 9, Left = 10, Right = 11 };
-    enum RedCar { Front = 12, Left = 13, Right = 14 };
-    enum BlackCar { Front = 15, Left = 16, Right = 17 };
+    class Car { public int Front, Left, Right;
+        public virtual void setValue() {
+        } }
+    class BlueCar:Car { /*public int override  Front = 0, Left = 1, Right = 2;*/
+            public override void setValue() {
+            Front = 0; Left = 1; Right = 2;
+        } }
+    class WhiteCar : Car { 
+
+        public override void setValue()
+        {
+            Front = 3; Left = 4; Right = 5;
+        }
+    }
+
+    class CopCar : Car { /*public int Front = 6, Left = 7, Right = 8; */
+        public override void setValue()
+        {
+            Front = 6; Left = 7; Right = 8;
+        }
+    }
+    class OrangeCar : Car { 
+
+        public override void setValue()
+        {
+            Front = 9; Left = 10; Right = 11;
+        }
+    }
+    class RedCar : Car { 
+
+        public override void setValue()
+        {
+            Front = 12; Left = 13; Right = 14;
+        }
+    }
+    class BlackCar : Car { 
+
+        public override void setValue()
+        {
+            Front = 15; Left = 16; Right = 17;
+        }
+    }
     public class AnimatedSprite
     {
         Texture2D Tex { get; set; }
@@ -30,14 +66,16 @@ namespace Idk
         int explosionCols;
         int expCurrentFrame;
         int expTotalFrames;
-      //  Fixture bodyFixture;
+        public int carSelected;
+        Car car;
+        //  Fixture bodyFixture;
 
-        public AnimatedSprite(Texture2D texture, int rows, int cols, Texture2D explosionTexture,int expRows,int expCols, Vector2 Location,World Realworld)
+        public AnimatedSprite(Texture2D texture, int rows, int cols, Texture2D explosionTexture,int expRows,int expCols, Vector2 Location,World Realworld,int carSel)
         {
             Tex = texture;
             Rows = rows;
             Columns = cols;
-            currentFrame = (int)OrangeCar.Front;
+           
             totalFrames = Rows * Columns;
             Position = Location;
             explosionTex = explosionTexture;
@@ -45,6 +83,9 @@ namespace Idk
             explosionCols = expCols;
             expTotalFrames = expRows * expCols;
             expCurrentFrame = 0;
+            //setCar(carSelected);
+            //currentFrame = (int)OrangeCar.Front;
+
 
 
             this.world = Realworld;
@@ -70,7 +111,43 @@ namespace Idk
             
         }
 
- 
+        public void setCar(int carSel)
+        {
+
+            switch (carSel)
+            {
+                case 0:
+                    BlueCar bc= new BlueCar();
+                    car = (BlueCar)bc;
+                    car.setValue();
+                    break;
+                case 1:
+                    WhiteCar wc = new WhiteCar();
+                    car = (WhiteCar)wc;
+                    car.setValue();
+                    break;
+                case 2:
+                    CopCar cc = new CopCar();
+                    car = (CopCar)cc;
+                    car.setValue();
+                    break;
+                case 3:
+                    OrangeCar oc = new OrangeCar();
+                    car = (OrangeCar)oc;
+                    car.setValue();
+                    break;
+                case 4:
+                    RedCar rc = new RedCar();
+                    car = (RedCar)rc;
+                    car.setValue();
+                    break;
+                case 5:
+                    BlackCar blc = new BlackCar();
+                    car = (BlackCar)blc;
+                    car.setValue();
+                    break;
+            }
+        }
 
         public void handleInput(int input,String player)
 
@@ -80,25 +157,25 @@ namespace Idk
                 switch (input)
                 {
                     case 1:
-                        currentFrame = (int)OrangeCar.Front;
+                        currentFrame = (int)car.Front;
                         player1.ApplyForce(AngleToVector(player1.Rotation, "up"), player1.WorldCenter);
                         break;
                     case 2:
-                        currentFrame = (int)OrangeCar.Front;
+                        currentFrame = (int)car.Front;
                         player1.ApplyForce(AngleToVector(player1.Rotation, "down"), player1.WorldCenter);
                         break;
                     case 3:
                         if (player1.LinearVelocity.Length() > 0)
                         {
                             player1.Rotation -= 0.050f;
-                            currentFrame = (int)OrangeCar.Left;
+                            currentFrame = (int)car.Left;
                         }
                         break;
                     case 4:
                         if (player1.LinearVelocity.Length() > 0)
                         {
                             player1.Rotation += 0.050f;
-                            currentFrame = (int)OrangeCar.Right;
+                            currentFrame = (int)car.Right;
                         }
                         break;
                 }
@@ -109,11 +186,11 @@ namespace Idk
                 switch (input)
                 {
                     case 1:
-                        currentFrame = (int)RedCar.Front;
+                        currentFrame = (int)car.Front;
                         player1.ApplyForce(AngleToVector(player1.Rotation, "up"), player1.WorldCenter);
                         break;
                     case 2:
-                        currentFrame = (int)RedCar.Front;
+                        currentFrame = (int)car.Front;
                         player1.ApplyForce(AngleToVector(player1.Rotation, "down"), player1.WorldCenter);
                         break;
                     case 3:
@@ -123,7 +200,7 @@ namespace Idk
                             
                            
                         }
-                        currentFrame = (int)RedCar.Left;
+                        currentFrame = (int)car.Left;
                         break;
                     case 4:
                         if (player1.LinearVelocity.Length() > 0)
@@ -131,7 +208,7 @@ namespace Idk
                             player1.Rotation += 0.050f;
                            
                         }
-                        currentFrame = (int)RedCar.Right;
+                        currentFrame = (int)car.Right;
                         break;
                 }
             }
@@ -173,8 +250,8 @@ namespace Idk
 
                 spriteBatch.Draw(explosionTex, Position, sourceRectangle, Color.White, player1.Rotation, origin, 1.0f, SpriteEffects.None, 1);
                 expCurrentFrame++;
-                //world.RemoveBody(player1);
                 player1.BodyType = BodyType.Static;
+
             }
             else
             {

@@ -54,9 +54,29 @@ namespace Idk
         private bool isActive;
         Texture2D firstbackground;
         SpriteFont font;
+        bool firstEnter = false;
+        bool secondEnter = false;
+        bool firsta = true;
+        bool firstd = true;
+        bool firstleft = true;
+        bool firstright = true;
 
 
+        bool carSet = false;
 
+        //Second Screen
+        Texture2D secondbackground;
+        Texture2D CarP1;
+        Texture2D CarP2;
+        int selectP1 = 0;
+        int selectP2 = 0;
+        bool game_start = false;
+        Texture2D one;
+        Texture2D two;
+        Texture2D three;
+
+        // Menu song
+        Song MenuSong;
 
 
         //Physics parameters
@@ -97,13 +117,14 @@ namespace Idk
         {
 
             //Steup StartScreen
-            Song MenuSong;
+            
             MenuSong = Content.Load<Song>("Sounds/Menu_Song_mixdown");
             font = Content.Load<SpriteFont>("Sprites/font");
 
 
             isActive = false;
             ScreenList.Add(new FirstScreen(MenuSong,font));
+            ScreenList.Add(new SecondScreen(MenuSong, font));
             ScreenList[0].setActive(true);
             firstbackground = Content.Load<Texture2D>("Sprites/Start_Screen_Background");
             // Create a new SpriteBatch, which can be used to draw textures.
@@ -118,6 +139,7 @@ namespace Idk
 
             //explosion texture
             explosionTexture = Content.Load<Texture2D>("Sprites/Explosion_Sprite_Sheet");
+
 
 
             //pENCIL wALLS TOP
@@ -161,10 +183,19 @@ namespace Idk
             effect[2] = Content.Load<SoundEffect>("Sounds/Car_Crash003");
 
 
+            //loading 
+         //   firstbackground = Content.Load<Texture2D>("Sprites/ToyBox");
+            secondbackground = Content.Load<Texture2D>("Sprites/Players");
+            CarP1 = Content.Load<Texture2D>("Sprites/Select_cars");
+            CarP2 = Content.Load<Texture2D>("Sprites/Select_cars");
+            one = Content.Load<Texture2D>("Sprites/One");
+            two = Content.Load<Texture2D>("Sprites/Two");
+            three = Content.Load<Texture2D>("Sprites/Three");
 
 
-            car1 = new AnimatedSprite(carsSpriteSheet, 3, 6,explosionTexture,4,5,car1StartingPos, world);
-            car2 = new AnimatedSprite(carsSpriteSheet, 3, 6, explosionTexture, 4, 5, car2StartingPos, world);
+
+            car1 = new AnimatedSprite(carsSpriteSheet, 3, 6,explosionTexture,4,5,car1StartingPos, world, selectP2);
+            car2 = new AnimatedSprite(carsSpriteSheet, 3, 6, explosionTexture, 4, 5, car2StartingPos, world, selectP1);
             boxPlatform = new BoxPlatform(boxTex, new Vector2(650, 350), world);
 
             car1.player1.OnCollision += MyOnCollision;
@@ -214,20 +245,109 @@ namespace Idk
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
-            if (ScreenList[0].getActive() == true)
+            if (firstEnter == true && Keyboard.GetState().IsKeyUp(Keys.Enter))
             {
-                ScreenList[0].Update(gameTime);
-                if (Keyboard.GetState().IsKeyDown(Keys.Enter))
+                secondEnter = true;
+            }
+
+                if (ScreenList[0].getActive() == true)
                 {
-                    ScreenList[0].setActive(false);
-                    isActive = true;
-                    if(!GameMusicPlaying)
-                    playGameMusic();
+                    if (Keyboard.GetState().IsKeyDown(Keys.Enter))
+                    {
+                        ScreenList[0].setActive(false);
+                        
+                        ScreenList[1].setActive(true);
+                        firstEnter = true;
+                    }
+                }
+            
+
+            if (ScreenList.Count >= 2)
+            {
+                if (ScreenList[1].getActive() == true)
+                {
+                    //secondElapsed += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+                    //if (secondElapsed >= secondDelay)
+                    //{
+                    //ScreenList[1].Update(gameTime);
+                    if (secondEnter == true && Keyboard.GetState().IsKeyDown(Keys.Enter))
+                    {
+
+                        ScreenList[1].setActive(false);
+                        isActive = true;
+                        if (!GameMusicPlaying)
+                            playGameMusic();
+                        firstEnter = secondEnter = false;
+                    }
+                    if (Keyboard.GetState().IsKeyUp(Keys.A) && firsta == false)
+                    {
+                        firsta = true;
+                    }
+                    if (Keyboard.GetState().IsKeyDown(Keys.A) && firsta == true)
+                    {
+                        if (selectP1 == 0)
+                        {
+                            selectP1 = 6;
+                        }
+                        selectP1--;
+                        selectP1 = selectP1 % 6;
+                        firsta = false;
+
+                    }
+                    if (Keyboard.GetState().IsKeyUp(Keys.D) && firstd == false)
+                    {
+                        firstd = true;
+                    }
+                    if (Keyboard.GetState().IsKeyDown(Keys.D) && firstd == true)
+                    {
+                        selectP1++;
+                        selectP1 = selectP1 % 6;
+                        firstd = false;
+                    }
+                    if (Keyboard.GetState().IsKeyUp(Keys.Left) && firstleft == false)
+                    {
+                        firstleft = true;
+                    }
+                    if (Keyboard.GetState().IsKeyDown(Keys.Left) && firstleft == true)
+                    {
+                        if (selectP2 == 0)
+                        {
+                            selectP2 = 6;
+                        }
+                        selectP2--;
+                        selectP2 = selectP2 % 6;
+                        firstleft = false;
+
+                    }
+                    if (Keyboard.GetState().IsKeyUp(Keys.Right) && firstright == false)
+                    {
+                        firstright = true;
+                    }
+                    if (Keyboard.GetState().IsKeyDown(Keys.Right) && firstright == true)
+                    {
+                        selectP2++;
+                        selectP2 = selectP2 % 6;
+                        firstright = false;
+                    }
+                    //    secondElapsed = 0;
+                    //}
                 }
             }
-            else { 
-            car1.Position = ConvertUnits.ToDisplayUnits(car1.player1.Position);
+
+
+            if (isActive)
+            {
+                if (carSet == false)
+                {
+                    carSet = true;
+                    car1.setCar(selectP2);
+                    car2.setCar(selectP1);
+                }
+               
+
+
+
+                car1.Position = ConvertUnits.ToDisplayUnits(car1.player1.Position);
             car2.Position = ConvertUnits.ToDisplayUnits(car2.player1.Position);
             timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
             myBackground.Update(0.1f);
@@ -292,7 +412,12 @@ namespace Idk
             if (ScreenList[0].getActive() == true)
                 ScreenList[0].Draw(gameTime, graphics, firstbackground, spriteBatch);
 
-            else
+            else if (ScreenList[1].getActive() == true)
+            {
+                ScreenList[1].Draw(gameTime, graphics, secondbackground, spriteBatch, CarP1, CarP2, selectP1, selectP2);
+                //System.Threading.Thread.Sleep(100);
+            }
+            else if(isActive)
             {
                 spriteBatch.Begin();
 
@@ -352,7 +477,7 @@ namespace Idk
                                            //          graphics.GraphicsDevice.Viewport.Height / 2f) / MeterInPixels), 0f)) * Matrix.CreateTranslation(new Vector3((new Vector2(graphics.GraphicsDevice.Viewport.Width / 2f,
                                              //        graphics.GraphicsDevice.Viewport.Height / 2f) / MeterInPixels), 0f));
                 // draw the debug view
-               //  _debugView.RenderDebugData(ref projection);
+            //   _debugView.RenderDebugData(ref projection);
 
 
 

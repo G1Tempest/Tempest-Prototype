@@ -34,6 +34,10 @@ namespace Idk
         {
 
         }
+        public virtual void Draw(GameTime gameTime, GraphicsDeviceManager graphics, Texture2D firstbackground, SpriteBatch spriteBatch, Texture2D CarP1, Texture2D CarP2,int selectP1, int selectP2)
+        {
+
+        }
         public bool  getActive( )
         {            
             return isActive;

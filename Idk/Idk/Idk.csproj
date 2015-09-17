@@ -81,7 +81,6 @@
     <Compile Include="Cars.cs" />
     <Compile Include="CoffeeMug.cs" />
     <Compile Include="ConvertUnits.cs" />
-    <Compile Include="CopCar.cs" />
     <Compile Include="DebugViewXNA.cs" />
     <Compile Include="FirstScreen.cs" />
     <Compile Include="Game1.cs" />
@@ -91,6 +90,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScreenInterface.cs" />
     <Compile Include="ScrollingBackground.cs" />
+    <Compile Include="SecondScreen.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FarseerPhysics MonoGame">
@@ -114,6 +114,9 @@
     <Content Include="Content\Sprites\Foreground.png" />
     <Content Include="Content\Sprites\Lava_Scrolling_Bkrnd_2048.png" />
     <Content Include="Content\Sprites\Motor_Mania.png" />
+    <Content Include="Content\Sprites\One.png" />
+    <Content Include="Content\Sprites\Players.png" />
+    <Content Include="Content\Sprites\Select_cars.png" />
     <Content Include="Content\Sprites\Side_Pencil.png" />
     <Content Include="Content\Sprites\SINGLE_Spark_Sprite_Sheet.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -121,7 +124,9 @@
     <Content Include="Content\Sprites\Start_Screen_Background.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Sprites\Three.png" />
     <Content Include="Content\Sprites\ToyBox.png" />
+    <Content Include="Content\Sprites\Two.png" />
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>

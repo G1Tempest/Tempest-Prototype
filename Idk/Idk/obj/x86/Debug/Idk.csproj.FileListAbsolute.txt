@@ -55,3 +55,8 @@ C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Debug\Content\Sprites\SINGLE_Spa
 C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Debug\Content\Sprites\Start_Screen_Background.png
 C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Debug\Content\Sprites\Explosion_Sprite_Sheet.xnb
 C:\Users\u1006341\Idontknow\Idk\Idk\obj\x86\Debug\Idk.csprojResolveAssemblyReference.cache
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Debug\Content\Sprites\One.xnb
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Debug\Content\Sprites\Players.xnb
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Debug\Content\Sprites\Select_cars.xnb
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Debug\Content\Sprites\Three.xnb
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Debug\Content\Sprites\Two.xnb
