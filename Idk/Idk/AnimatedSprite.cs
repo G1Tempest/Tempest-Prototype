@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Audio;
 
 namespace Idk
 {
-    class Car { public int Front, Left, Right;
+    class Car { public int Front=-1, Left=-1, Right=-1;
         public virtual void setValue() {
         } }
     class BlueCar:Car { /*public int override  Front = 0, Left = 1, Right = 2;*/

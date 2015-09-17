@@ -42,6 +42,7 @@ namespace Idk
         PencilWall[] pencilWallLeft;
         PencilWall[] pencilWallRight;
         bool drawSpark = false;
+        int elapsedTime;
 
         //music stuff
         protected Song song;
@@ -339,9 +340,10 @@ namespace Idk
             {
                 if (carSet == false)
                 {
-                    carSet = true;
+                    
                     car1.setCar(selectP2);
                     car2.setCar(selectP1);
+                    carSet = true;
                 }
                
 
@@ -350,6 +352,7 @@ namespace Idk
                 car1.Position = ConvertUnits.ToDisplayUnits(car1.player1.Position);
             car2.Position = ConvertUnits.ToDisplayUnits(car2.player1.Position);
             timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                elapsedTime = (int)gameTime.ElapsedGameTime.TotalSeconds ;
             myBackground.Update(0.1f);
             if(timer>=1.0f)
             {
@@ -415,19 +418,23 @@ namespace Idk
             else if (ScreenList[1].getActive() == true)
             {
                 ScreenList[1].Draw(gameTime, graphics, secondbackground, spriteBatch, CarP1, CarP2, selectP1, selectP2);
-                //System.Threading.Thread.Sleep(100);
+
             }
             else if(isActive)
             {
                 spriteBatch.Begin();
+                spriteBatch.DrawString(font, ""+elapsedTime, Vector2.Zero, Color.White);
 
 
                 myBackground.Draw(spriteBatch);
                 //spriteBatch.Draw(background, new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight), Color.White);
                 spriteBatch.Draw(foreground, new Rectangle(50, 50, graphics.PreferredBackBufferWidth - 100, graphics.PreferredBackBufferHeight - 100), Color.White);
                 // spriteBatch.Draw(taxi, vec, new Rectangle(0, 0, taxi.Width, taxi.Height), Color.White,ConvertUnits.ToDisplayUnits(player1.Rotation),origin,1.0f,SpriteEffects.None,1);
-                car1.Draw(spriteBatch);
-                car2.Draw(spriteBatch);
+                if (carSet == true)
+                {
+                    car1.Draw(spriteBatch);
+                    car2.Draw(spriteBatch);
+                }
                 boxPlatform.Draw(spriteBatch);
                 pencilWallTop[0].Draw(spriteBatch);
                 pencilWallTop[1].Draw(spriteBatch);
