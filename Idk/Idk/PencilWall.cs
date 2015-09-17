@@ -29,11 +29,11 @@ namespace Idk
 
             Pencil = BodyFactory.CreateRectangle(world, ConvertUnits.ToSimUnits(Tex.Width-10), ConvertUnits.ToSimUnits(Tex.Height-10), 1.0f, PhyPosition);
             Pencil.BodyType = BodyType.Dynamic;
-            Pencil.LinearDamping = 10;
+            Pencil.LinearDamping = 20;
             Pencil.AngularDamping = 150;
-            Pencil.Friction = 5;
+            Pencil.Friction = 15;
             Pencil.Restitution = -2;
-            Pencil.Mass = 10;
+            Pencil.Mass = 30;
             Pencil.FixedRotation = true;
             PencilWallPos = pos;
 

@@ -35,6 +35,7 @@ namespace Idk
         Texture2D boxTex;
         BoxPlatform boxPlatform;
         Texture2D collisionSpark;
+        Texture2D explosionTexture;
         Vector2 collisionPoint;
         ScrollingBackground myBackground;
         PencilWall[] pencilWallTop;
@@ -116,16 +117,19 @@ namespace Idk
             myBackground = new ScrollingBackground();
             myBackground.Load(GraphicsDevice, background);
 
+            //explosion texture
+            explosionTexture = Content.Load<Texture2D>("Sprites/Explosion_Sprite_Sheet");
+
 
             //pENCIL wALLS TOP
             pencilTex = Content.Load<Texture2D>("Sprites/Bottom_pencil");
             pencilTexSide = Content.Load<Texture2D>("Sprites/Side_Pencil");
             pencilWallTop = new PencilWall[5];
             pencilWallTop[0] = new PencilWall(pencilTex, new Vector2(125, 100), world, "up");
-            pencilWallTop[1] = new PencilWall(pencilTex, new Vector2(455, 100), world, "up");
-            pencilWallTop[2] = new PencilWall(pencilTex, new Vector2(785, 100), world, "up");
-            pencilWallTop[3] = new PencilWall(pencilTex, new Vector2(1125, 100), world, "up");
-            pencilWallTop[4] = new PencilWall(pencilTex, new Vector2(1445, 100), world, "up");
+            pencilWallTop[1] = new PencilWall(pencilTex, new Vector2(465, 100), world, "up");
+            pencilWallTop[2] = new PencilWall(pencilTex, new Vector2(795, 100), world, "up");
+            pencilWallTop[3] = new PencilWall(pencilTex, new Vector2(1135, 100), world, "up");
+            pencilWallTop[4] = new PencilWall(pencilTex, new Vector2(1455, 100), world, "up");
 
 
             //PencilWalls Bot
@@ -160,8 +164,8 @@ namespace Idk
 
 
 
-            car1 = new AnimatedSprite(carsSpriteSheet, 3, 6, car1StartingPos, world);
-            car2 = new AnimatedSprite(carsSpriteSheet, 3, 6, car2StartingPos, world);
+            car1 = new AnimatedSprite(carsSpriteSheet, 3, 6,explosionTexture,4,5,car1StartingPos, world);
+            car2 = new AnimatedSprite(carsSpriteSheet, 3, 6, explosionTexture, 4, 5, car2StartingPos, world);
             boxPlatform = new BoxPlatform(boxTex, new Vector2(650, 350), world);
 
             car1.player1.OnCollision += MyOnCollision;
@@ -181,8 +185,10 @@ namespace Idk
         }
         private bool MyOnCollision(Fixture fixtureA, Fixture fixtureB, Contact contact)
         {
-          FixedArray2<ManifoldPoint> fa2 = contact.Manifold.Points;
-            collisionPoint = ConvertUnits.ToDisplayUnits(fa2[0].LocalPoint);
+            FixedArray2<Vector2> worldPoints;
+            Vector2 normal;
+            contact.GetWorldManifold(out normal, out worldPoints);
+          collisionPoint = ConvertUnits.ToDisplayUnits(worldPoints[0]);
             drawSpark = true;
 
             Random randomSound = new Random();
@@ -221,6 +227,7 @@ namespace Idk
                     playGameMusic();
                 }
             }
+            else { 
             car1.Position = ConvertUnits.ToDisplayUnits(car1.player1.Position);
             car2.Position = ConvertUnits.ToDisplayUnits(car2.player1.Position);
             timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -254,29 +261,12 @@ namespace Idk
                     car2.handleInput(4, "Player1");
 
             }
-         RemoveFallenObjects();
             // TODO: Add your update logic here
             world.Step((float)gameTime.ElapsedGameTime.TotalSeconds);
             base.Update(gameTime);
+                }
         }
 
-        private void RemoveFallenObjects()
-        {
-            //check if cars are on the table
-            Vector2 car1Pos= car1.player1.Position;
-            Vector2 car2Pos = car1.player1.Position;
-        }
-
-        private bool isBodyOnTable(Vector2 position)
-        {
-            if(position.X<100.0f || position.X>1550.0f)
-
-                return false;
-          /*  if(position.Y < 130.0f || position.Y > 800.0f)
-                return false;*/
-            return true;
-
-        }
 
         private void playGameMusic()
         {
@@ -314,7 +304,7 @@ namespace Idk
                 // spriteBatch.Draw(taxi, vec, new Rectangle(0, 0, taxi.Width, taxi.Height), Color.White,ConvertUnits.ToDisplayUnits(player1.Rotation),origin,1.0f,SpriteEffects.None,1);
                 car1.Draw(spriteBatch);
                 car2.Draw(spriteBatch);
-              //  boxPlatform.Draw(spriteBatch);
+                boxPlatform.Draw(spriteBatch);
                 pencilWallTop[0].Draw(spriteBatch);
                 pencilWallTop[1].Draw(spriteBatch);
                 pencilWallTop[2].Draw(spriteBatch);
@@ -348,7 +338,7 @@ namespace Idk
                 if (drawSpark)
                 {
                     drawSpark = false;
-                    spriteBatch.Draw(collisionSpark, new Rectangle((int)collisionPoint.X, (int)collisionPoint.Y, collisionSpark.Width,collisionSpark.Height), Color.White);
+                    spriteBatch.Draw(collisionSpark, new Vector2(collisionPoint.X,collisionPoint.Y), Color.White);
 
                 }
 
@@ -363,7 +353,7 @@ namespace Idk
                                            //          graphics.GraphicsDevice.Viewport.Height / 2f) / MeterInPixels), 0f)) * Matrix.CreateTranslation(new Vector3((new Vector2(graphics.GraphicsDevice.Viewport.Width / 2f,
                                              //        graphics.GraphicsDevice.Viewport.Height / 2f) / MeterInPixels), 0f));
                 // draw the debug view
-                 _debugView.RenderDebugData(ref projection);
+                 //_debugView.RenderDebugData(ref projection);
 
 
 

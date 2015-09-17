@@ -25,9 +25,14 @@ namespace Idk
         public Vector2 Position;
        public  Body player1;
        public  World world;
+        Texture2D explosionTex;
+        int explosionRows;
+        int explosionCols;
+        int expCurrentFrame;
+        int expTotalFrames;
       //  Fixture bodyFixture;
 
-        public AnimatedSprite(Texture2D texture, int rows, int cols, Vector2 Location,World Realworld)
+        public AnimatedSprite(Texture2D texture, int rows, int cols, Texture2D explosionTexture,int expRows,int expCols, Vector2 Location,World Realworld)
         {
             Tex = texture;
             Rows = rows;
@@ -35,7 +40,11 @@ namespace Idk
             currentFrame = (int)OrangeCar.Front;
             totalFrames = Rows * Columns;
             Position = Location;
-
+            explosionTex = explosionTexture;
+            explosionRows = expRows;
+            explosionCols = expCols;
+            expTotalFrames = expRows * expCols;
+            expCurrentFrame = 0;
 
 
             this.world = Realworld;
@@ -55,13 +64,13 @@ namespace Idk
             player1.LinearDamping = 5;
             player1.AngularDamping = 150;
             player1.Friction = 5;
-            player1.Restitution = 2;
+            player1.Restitution = 3;
             player1.Mass = 3;
             player1.LinearVelocity = Vector2.Zero;
             
         }
 
-
+ 
 
         public void handleInput(int input,String player)
 
@@ -150,17 +159,48 @@ namespace Idk
             int height = Tex.Height / Rows;
             int row = (int)((float)currentFrame / (float)Columns);
             int column = currentFrame % Columns;
-           // Vector2 vec = new Vector2(LocationX, LocationY);
-                //ConvertUnits.ToDisplayUnits(player1.Position);
-            Vector2 origin = new Vector2(width / 2, height / 2);
 
-            Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
-            //spriteBatch.Draw(Tex, destinationRectangle, sourceRectangle, Color.White);
+            int expWidth = explosionTex.Width / explosionCols;
+            int expHeight = explosionTex.Height / explosionRows;
+            int expRow= (int)((float)expCurrentFrame / (float)explosionCols);
+            int expcolumn = expCurrentFrame % explosionCols;
+            if (isNotOnTable())
+            {
+                Vector2 origin = new Vector2(expWidth / 2, expHeight / 2);
 
-           // spriteBatch.Draw(Tex, ConvertUnits.ToDisplayUnits(player1.Position), Color.White);
+                Rectangle sourceRectangle = new Rectangle(expWidth * expcolumn, expHeight * expRow, expWidth, expHeight);
 
-            spriteBatch.Draw(Tex, Position, sourceRectangle, Color.White, player1.Rotation, origin, 1.0f, SpriteEffects.None, 1);
 
+                spriteBatch.Draw(explosionTex, Position, sourceRectangle, Color.White, player1.Rotation, origin, 1.0f, SpriteEffects.None, 1);
+                expCurrentFrame++;
+                //world.RemoveBody(player1);
+                player1.BodyType = BodyType.Static;
+            }
+            else
+            {
+
+                Vector2 origin = new Vector2(width / 2, height / 2);
+
+                Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
+
+
+                spriteBatch.Draw(Tex, Position, sourceRectangle, Color.White, player1.Rotation, origin, 1.0f, SpriteEffects.None, 1);
+            }
+
+        }
+
+        private bool isNotOnTable()
+        {
+            Vector2 bodyPos = ConvertUnits.ToDisplayUnits(player1.Position);
+            if(bodyPos.X<80 || bodyPos.X > 1850)
+            {
+                return true;
+            }
+            if (bodyPos.Y < 80 || bodyPos.Y > 1000)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

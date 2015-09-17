@@ -110,6 +110,7 @@
     <Content Include="Content\Sounds\Menu_Song_mixdown.mp3" />
     <Content Include="Content\Sprites\Bottom_Pencil.png" />
     <Content Include="Content\Sprites\Cars_test.png" />
+    <Content Include="Content\Sprites\Explosion_Sprite_Sheet.png" />
     <Content Include="Content\Sprites\Foreground.png" />
     <Content Include="Content\Sprites\Lava_Scrolling_Bkrnd_2048.png" />
     <Content Include="Content\Sprites\Motor_Mania.png" />
