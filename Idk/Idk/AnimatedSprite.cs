@@ -66,6 +66,7 @@ namespace Idk
         int explosionCols;
         int expCurrentFrame;
         int expTotalFrames;
+        public bool explosionFinished;
         public int carSelected;
         Car car;
         //  Fixture bodyFixture;
@@ -248,8 +249,12 @@ namespace Idk
                 Rectangle sourceRectangle = new Rectangle(expWidth * expcolumn, expHeight * expRow, expWidth, expHeight);
 
 
-                spriteBatch.Draw(explosionTex, Position, sourceRectangle, Color.White, player1.Rotation, origin, 1.0f, SpriteEffects.None, 1);
+                spriteBatch.Draw(explosionTex, Position, sourceRectangle, Color.White, player1.Rotation, origin, 2.0f, SpriteEffects.None, 1);
                 expCurrentFrame++;
+                if (expCurrentFrame == 19)
+                {
+                    explosionFinished = true;
+                }
                 player1.BodyType = BodyType.Static;
 
             }
@@ -261,12 +266,12 @@ namespace Idk
                 Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
 
 
-                spriteBatch.Draw(Tex, Position, sourceRectangle, Color.White, player1.Rotation, origin, 1.0f, SpriteEffects.None, 1);
+                spriteBatch.Draw(Tex, Position, sourceRectangle, Color.White, player1.Rotation, origin, 1.3f, SpriteEffects.None, 1);
             }
 
         }
 
-        private bool isNotOnTable()
+        public  bool isNotOnTable()
         {
             Vector2 bodyPos = ConvertUnits.ToDisplayUnits(player1.Position);
             if(bodyPos.X<80 || bodyPos.X > 1850)

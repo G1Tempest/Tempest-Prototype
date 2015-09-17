@@ -82,6 +82,7 @@
     <Compile Include="CoffeeMug.cs" />
     <Compile Include="ConvertUnits.cs" />
     <Compile Include="DebugViewXNA.cs" />
+    <Compile Include="EndScreen.cs" />
     <Compile Include="FirstScreen.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="PencilWall.cs" />
@@ -115,6 +116,8 @@
     <Content Include="Content\Sprites\Lava_Scrolling_Bkrnd_2048.png" />
     <Content Include="Content\Sprites\Motor_Mania.png" />
     <Content Include="Content\Sprites\One.png" />
+    <Content Include="Content\Sprites\P1_Wins.png" />
+    <Content Include="Content\Sprites\P2_Wins.png" />
     <Content Include="Content\Sprites\Players.png" />
     <Content Include="Content\Sprites\Select_cars.png" />
     <Content Include="Content\Sprites\Side_Pencil.png" />

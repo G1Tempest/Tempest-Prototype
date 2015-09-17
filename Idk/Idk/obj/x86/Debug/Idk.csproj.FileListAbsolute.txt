@@ -60,3 +60,6 @@ C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Debug\Content\Sprites\Players.xn
 C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Debug\Content\Sprites\Select_cars.xnb
 C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Debug\Content\Sprites\Three.xnb
 C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Debug\Content\Sprites\Two.xnb
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Debug\Content\Sprites\Draw.xnb
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Debug\Content\Sprites\P1_Wins.xnb
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Debug\Content\Sprites\P2_Wins.xnb

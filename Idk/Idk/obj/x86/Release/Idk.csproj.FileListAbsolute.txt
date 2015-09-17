@@ -51,5 +51,15 @@ C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\Content\ToyBox.xnb
 C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\FarseerPhysics MonoGame.dll
 C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\FarseerPhysics MonoGame.pdb
 C:\Users\u1006341\Idontknow\Idk\Idk\obj\x86\Release\Idk.csprojResolveAssemblyReference.cache
-C:\Users\u1006341\Idontknow\Idk\Idk\obj\x86\Release\Idk.exe.manifest
-C:\Users\u1006341\Idontknow\Idk\Idk\obj\x86\Release\Idk.TrustInfo.xml
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\Content\Sprites\Draw.xnb
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\Content\Sprites\Explosion_Sprite_Sheet.xnb
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\Content\Sprites\One.xnb
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\Content\Sprites\P1_Wins.xnb
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\Content\Sprites\P2_Wins.xnb
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\Content\Sprites\Players.xnb
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\Content\Sprites\Select_cars.xnb
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\Content\Sprites\SINGLE_Spark_Sprite_Sheet.xnb
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\Content\Sprites\Three.xnb
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\Content\Sprites\Two.xnb
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\Content\Sprites\SINGLE_Spark_Sprite_Sheet.png
+C:\Users\u1006341\Idontknow\Idk\Idk\bin\Windows\Release\Content\Sprites\Start_Screen_Background.png

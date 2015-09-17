@@ -42,7 +42,12 @@ namespace Idk
         PencilWall[] pencilWallLeft;
         PencilWall[] pencilWallRight;
         bool drawSpark = false;
-        int elapsedTime;
+        bool gameDraw = false;
+        double elapsedTime;
+        int countdown;
+
+        float elapsed;
+        int gamestart=1;
 
         //music stuff
         protected Song song;
@@ -54,6 +59,16 @@ namespace Idk
         private List<ScreenInterface> ScreenList = new List<ScreenInterface>();
         private bool isActive;
         Texture2D firstbackground;
+
+        //end state
+
+        Texture2D p1WinsImage;
+        Texture2D p2WinsImage;
+        Texture2D drawGameImage;
+
+        Texture2D oneImage;
+        Texture2D twoImage;
+        Texture2D threeImage;
         SpriteFont font;
         bool firstEnter = false;
         bool secondEnter = false;
@@ -81,8 +96,8 @@ namespace Idk
 
 
         //Physics parameters
-        Vector2 car1StartingPos = new Vector2(1700.0f, 200.0f);
-        Vector2 car2StartingPos = new Vector2(300.0f, 200.0f);
+        Vector2 car1StartingPos = new Vector2(1700.0f, 500.0f);
+        Vector2 car2StartingPos = new Vector2(200.0f, 500.0f);
         private Texture2D pencilTexSide;
         private bool GameMusicPlaying=false;
 
@@ -90,6 +105,7 @@ namespace Idk
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            //graphics.IsFullScreen = true;
             graphics.PreferredBackBufferWidth = 1920;
             graphics.PreferredBackBufferHeight = 1080;
             world = new World(new Vector2(0, 0));
@@ -126,8 +142,14 @@ namespace Idk
             isActive = false;
             ScreenList.Add(new FirstScreen(MenuSong,font));
             ScreenList.Add(new SecondScreen(MenuSong, font));
+            ScreenList.Add(new EndScreen());
             ScreenList[0].setActive(true);
             firstbackground = Content.Load<Texture2D>("Sprites/Start_Screen_Background");
+
+            //end states
+            p1WinsImage = Content.Load<Texture2D>("Sprites/P1_Wins");
+            p2WinsImage = Content.Load<Texture2D>("Sprites/P2_Wins");
+            drawGameImage = Content.Load<Texture2D>("Sprites/Draw");
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
@@ -340,53 +362,79 @@ namespace Idk
             {
                 if (carSet == false)
                 {
-                    
+
                     car1.setCar(selectP2);
                     car2.setCar(selectP1);
                     carSet = true;
                 }
-               
+
 
 
 
                 car1.Position = ConvertUnits.ToDisplayUnits(car1.player1.Position);
-            car2.Position = ConvertUnits.ToDisplayUnits(car2.player1.Position);
-            timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
-                elapsedTime = (int)gameTime.ElapsedGameTime.TotalSeconds ;
-            myBackground.Update(0.1f);
-            if(timer>=1.0f)
-            {
-                if(Keyboard.GetState().IsKeyDown(Keys.Up))
-                
-                car1.handleInput(1,"Player2");
-                if (Keyboard.GetState().IsKeyDown(Keys.Down))
-
-                    car1.handleInput(2, "Player2");
-                if (Keyboard.GetState().IsKeyDown(Keys.Left))
-
-                    car1.handleInput(3, "Player2");
-                if (Keyboard.GetState().IsKeyDown(Keys.Right))
-
-                    car1.handleInput(4, "Player2");
-
-                if (Keyboard.GetState().IsKeyDown(Keys.W))
-
-                    car2.handleInput(1, "Player1");
-                if (Keyboard.GetState().IsKeyDown(Keys.S))
-
-                    car2.handleInput(2, "Player1");
-                if (Keyboard.GetState().IsKeyDown(Keys.A))
-
-                    car2.handleInput(3, "Player1");
-                if (Keyboard.GetState().IsKeyDown(Keys.D))
-
-                    car2.handleInput(4, "Player1");
-
-            }
-            // TODO: Add your update logic here
-            world.Step((float)gameTime.ElapsedGameTime.TotalSeconds);
-            base.Update(gameTime);
+                car2.Position = ConvertUnits.ToDisplayUnits(car2.player1.Position);
+                elapsed += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                if (elapsed >=1.8f)
+                {
+                    gamestart++;
+                    elapsed = 0;
                 }
+                if (gamestart >= 4)
+                {
+                    timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    elapsedTime += gameTime.ElapsedGameTime.TotalSeconds;
+                    myBackground.Update(0.1f);
+                    if (timer >= 1.0f)
+                    {
+                        if (Keyboard.GetState().IsKeyDown(Keys.Up))
+
+                            car1.handleInput(1, "Player2");
+                        if (Keyboard.GetState().IsKeyDown(Keys.Down))
+
+                            car1.handleInput(2, "Player2");
+                        if (Keyboard.GetState().IsKeyDown(Keys.Left))
+
+                            car1.handleInput(3, "Player2");
+                        if (Keyboard.GetState().IsKeyDown(Keys.Right))
+
+                            car1.handleInput(4, "Player2");
+
+                        if (Keyboard.GetState().IsKeyDown(Keys.W))
+
+                            car2.handleInput(1, "Player1");
+                        if (Keyboard.GetState().IsKeyDown(Keys.S))
+
+                            car2.handleInput(2, "Player1");
+                        if (Keyboard.GetState().IsKeyDown(Keys.A))
+
+                            car2.handleInput(3, "Player1");
+                        if (Keyboard.GetState().IsKeyDown(Keys.D))
+
+                            car2.handleInput(4, "Player1");
+
+                    }
+                }
+                    if (car1.isNotOnTable() && car1.explosionFinished)
+                    {
+
+                        isActive = false;
+                        ScreenList[2].setActive(true);
+                    }
+                    if (car2.isNotOnTable() && car2.explosionFinished)
+                    {
+                        isActive = false;
+                        ScreenList[2].setActive(true);
+                    }
+                if (countdown == -1)
+                {
+                    isActive = false;
+                    ScreenList[2].setActive(true);
+                }
+                    // TODO: Add your update logic here
+                    world.Step((float)gameTime.ElapsedGameTime.TotalSeconds);
+                    base.Update(gameTime);
+                }
+            
         }
 
 
@@ -412,6 +460,8 @@ namespace Idk
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+            
+            
             if (ScreenList[0].getActive() == true)
                 ScreenList[0].Draw(gameTime, graphics, firstbackground, spriteBatch);
 
@@ -422,75 +472,115 @@ namespace Idk
             }
             else if(isActive)
             {
-                spriteBatch.Begin();
-                spriteBatch.DrawString(font, ""+elapsedTime, Vector2.Zero, Color.White);
+
+                    spriteBatch.Begin();
+               
+
 
 
                 myBackground.Draw(spriteBatch);
-                //spriteBatch.Draw(background, new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight), Color.White);
-                spriteBatch.Draw(foreground, new Rectangle(50, 50, graphics.PreferredBackBufferWidth - 100, graphics.PreferredBackBufferHeight - 100), Color.White);
-                // spriteBatch.Draw(taxi, vec, new Rectangle(0, 0, taxi.Width, taxi.Height), Color.White,ConvertUnits.ToDisplayUnits(player1.Rotation),origin,1.0f,SpriteEffects.None,1);
-                if (carSet == true)
-                {
-                    car1.Draw(spriteBatch);
-                    car2.Draw(spriteBatch);
-                }
-                boxPlatform.Draw(spriteBatch);
-                pencilWallTop[0].Draw(spriteBatch);
-                pencilWallTop[1].Draw(spriteBatch);
-                pencilWallTop[2].Draw(spriteBatch);
-                pencilWallTop[3].Draw(spriteBatch);
-                pencilWallTop[4].Draw(spriteBatch);
+                    //spriteBatch.Draw(background, new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight), Color.White);
+                    spriteBatch.Draw(foreground, new Rectangle(50, 50, graphics.PreferredBackBufferWidth - 100, graphics.PreferredBackBufferHeight - 100), Color.White);
+                    // spriteBatch.Draw(taxi, vec, new Rectangle(0, 0, taxi.Width, taxi.Height), Color.White,ConvertUnits.ToDisplayUnits(player1.Rotation),origin,1.0f,SpriteEffects.None,1);
+                    if (carSet == true)
+                    {
+                        car1.Draw(spriteBatch);
+                        car2.Draw(spriteBatch);
+                    }
+                    boxPlatform.Draw(spriteBatch);
+                    pencilWallTop[0].Draw(spriteBatch);
+                    pencilWallTop[1].Draw(spriteBatch);
+                    pencilWallTop[2].Draw(spriteBatch);
+                    pencilWallTop[3].Draw(spriteBatch);
+                    pencilWallTop[4].Draw(spriteBatch);
 
 
 
-                pencilWallBot[0].Draw(spriteBatch);
-                pencilWallBot[1].Draw(spriteBatch);
-                pencilWallBot[2].Draw(spriteBatch);
-                pencilWallBot[3].Draw(spriteBatch);
-                pencilWallBot[4].Draw(spriteBatch);
+                    pencilWallBot[0].Draw(spriteBatch);
+                    pencilWallBot[1].Draw(spriteBatch);
+                    pencilWallBot[2].Draw(spriteBatch);
+                    pencilWallBot[3].Draw(spriteBatch);
+                    pencilWallBot[4].Draw(spriteBatch);
 
 
 
-                //pencil wall left
+                    //pencil wall left
 
-                pencilWallLeft[0].Draw(spriteBatch);
-                pencilWallLeft[1].Draw(spriteBatch);
-                pencilWallLeft[2].Draw(spriteBatch);
+                    pencilWallLeft[0].Draw(spriteBatch);
+                    pencilWallLeft[1].Draw(spriteBatch);
+                    pencilWallLeft[2].Draw(spriteBatch);
 
 
 
-                //pencil wall right
-                pencilWallRight[0].Draw(spriteBatch);
-                pencilWallRight[1].Draw(spriteBatch);
-                pencilWallRight[2].Draw(spriteBatch);
+                    //pencil wall right
+                    pencilWallRight[0].Draw(spriteBatch);
+                    pencilWallRight[1].Draw(spriteBatch);
+                    pencilWallRight[2].Draw(spriteBatch);
 
                 //draw collisionspark if drawSpark
-                if (drawSpark)
+
+                if (gamestart == 1)
                 {
-                    drawSpark = false;
-                    spriteBatch.Draw(collisionSpark, new Vector2(collisionPoint.X-(collisionSpark.Width/2),collisionPoint.Y-(collisionSpark.Height/2)), Color.White);
+                    spriteBatch.Draw(three, new Rectangle(850, 100, one.Width, one.Height), Color.White);
+                }
+                if (gamestart == 2)
+                {
+                    spriteBatch.Draw(two, new Rectangle(850, 100, two.Width, two.Height), Color.White);
+                }
+                if (gamestart == 3)
+                {
+                    spriteBatch.Draw(one, new Rectangle(850, 100, three.Width, three.Height), Color.White);
+                }
+                if (drawSpark)
+                    {
+                        drawSpark = false;
+                        spriteBatch.Draw(collisionSpark, new Vector2(collisionPoint.X - (collisionSpark.Width / 2), collisionPoint.Y - (collisionSpark.Height / 2)), Color.White);
+
+                    }
+                    countdown =60- (int)elapsedTime;
+                    spriteBatch.DrawString(font, countdown.ToString(), new Vector2(960, 20), Color.White);
+
+                    spriteBatch.End();
+
+                   // spriteBatch.Draw(firstbackground, new Rectangle(700 + firstbackground.Width / 2, 270 + firstbackground.Height / 2, firstbackground.Width * 2, firstbackground.Height * 2), Color.White);
+                    gameDraw = true;
+
+                if (car1.isNotOnTable())
+                {
+
+                    ScreenList[2].Draw(gameTime, graphics, p1WinsImage, spriteBatch);
 
                 }
+                else if (car2.isNotOnTable())
+                {
 
-                spriteBatch.End();
+                    ScreenList[2].Draw(gameTime, graphics, p2WinsImage, spriteBatch);
+                }
+                else if (countdown == -1)
+                {
+                    ScreenList[2].Draw(gameTime, graphics, drawGameImage, spriteBatch);
+                }
+
 
                 //debug view draw
 
                 Matrix projection = Matrix.CreateOrthographicOffCenter(0f, ConvertUnits.ToSimUnits(graphics.GraphicsDevice.Viewport.Width),
-                                                                  ConvertUnits.ToSimUnits(graphics.GraphicsDevice.Viewport.Height), 0f, 0f,
-                                                                  1f);
-                //Matrix view = Matrix.CreateTranslation(new Vector3((Vector2.Zero / MeterInPixels) - (new Vector2(graphics.GraphicsDevice.Viewport.Width / 2f,
-                                           //          graphics.GraphicsDevice.Viewport.Height / 2f) / MeterInPixels), 0f)) * Matrix.CreateTranslation(new Vector3((new Vector2(graphics.GraphicsDevice.Viewport.Width / 2f,
-                                             //        graphics.GraphicsDevice.Viewport.Height / 2f) / MeterInPixels), 0f));
-                // draw the debug view
-            //   _debugView.RenderDebugData(ref projection);
+                                                                      ConvertUnits.ToSimUnits(graphics.GraphicsDevice.Viewport.Height), 0f, 0f,
+                                                                      1f);
+                    //Matrix view = Matrix.CreateTranslation(new Vector3((Vector2.Zero / MeterInPixels) - (new Vector2(graphics.GraphicsDevice.Viewport.Width / 2f,
+                    //          graphics.GraphicsDevice.Viewport.Height / 2f) / MeterInPixels), 0f)) * Matrix.CreateTranslation(new Vector3((new Vector2(graphics.GraphicsDevice.Viewport.Width / 2f,
+                    //        graphics.GraphicsDevice.Viewport.Height / 2f) / MeterInPixels), 0f));
+                    // draw the debug view
+                    //   _debugView.RenderDebugData(ref projection);
 
 
 
-                // TODO: Add your drawing code here
+                    // TODO: Add your drawing code here
+                
 
                 base.Draw(gameTime);
+                
+
             }
         }
     }
