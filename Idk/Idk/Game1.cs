@@ -12,7 +12,6 @@ using FarseerPhysics.Dynamics.Contacts;
 using System;
 using System.Collections.Generic;
 using FarseerPhysics.Common;
-using FarseerPhysics.Collision;
 
 namespace Idk
 {
@@ -338,7 +337,7 @@ namespace Idk
                 if (drawSpark)
                 {
                     drawSpark = false;
-                    spriteBatch.Draw(collisionSpark, new Vector2(collisionPoint.X,collisionPoint.Y), Color.White);
+                    spriteBatch.Draw(collisionSpark, new Vector2(collisionPoint.X-(collisionSpark.Width/2),collisionPoint.Y-(collisionSpark.Height/2)), Color.White);
 
                 }
 
@@ -353,7 +352,7 @@ namespace Idk
                                            //          graphics.GraphicsDevice.Viewport.Height / 2f) / MeterInPixels), 0f)) * Matrix.CreateTranslation(new Vector3((new Vector2(graphics.GraphicsDevice.Viewport.Width / 2f,
                                              //        graphics.GraphicsDevice.Viewport.Height / 2f) / MeterInPixels), 0f));
                 // draw the debug view
-                 //_debugView.RenderDebugData(ref projection);
+               //  _debugView.RenderDebugData(ref projection);
 
 
 
