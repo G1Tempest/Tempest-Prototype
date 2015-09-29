@@ -16,7 +16,7 @@ function Player ()
 	var origin = new vec3();
 	origin.set(300,300,0);
 	
-	var radius = 175;
+	var radius = 150;
 	
 	this.init = function (stage) {
 		position = new vec3();
@@ -46,7 +46,7 @@ function Player ()
 		
 		
 		stage.addChild(playerTexture);
-		stage.addChild(shadowTexture);
+		//stage.addChild(shadowTexture);
 		
 	};
 	
@@ -70,7 +70,9 @@ function Player ()
 				shadowTexture.position.y = (origin.getY() + (radius+30) * Math.cos(rad(angle)));
 				
 				
-			} else if (e.keyCode == 37) {//|| e.keyCode == 37) {
+			} 
+			
+			if (e.keyCode == 37) {//|| e.keyCode == 37) {
 				angle -= 5;
 		
 				if (angle <= 0)
