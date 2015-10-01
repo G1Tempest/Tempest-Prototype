@@ -42,18 +42,18 @@ function Level ()
 			
 		background4 = new PIXI.Graphics();
 		background4.beginFill(0x000000);  
-		background4.drawRect(500, 0, 100, 800);
+		background4.drawRect(500, 0, 200, 800);
 		stage.addChild(background4);
 	
 	};
 	
 	this.update = function (e) {
 		
-		if (e == null ){
+		//if (e == null ){
 			tunnel.update(e);
-		} else {
+		//} else {
 			player.update(e);
-		}
+		//}
 		
 	};
 	

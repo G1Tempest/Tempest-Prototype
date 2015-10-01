@@ -16,27 +16,13 @@ function Tunnel ()
 		
 		var factor = 1.0;
 		
-		//center = new Vec3();
-		//center.set (300,300,0);
+		center = new vec3();
+		center.set (300,300,0);
 		
-		for (var i = 0; i< 8; i++) {
-			
+		for (var i = 0; i< 11; i++) {
 			
 			tunnelElements.push (new TunnelElement());
 			tunnelElements[i].init(center,i,stage);
-			
-			/*tunnelElements.push(PIXI.Sprite.fromImage(assetFolder + src[0]));
-			tunnelElements[i].position.x = 300;
-			tunnelElements[i].position.y = 300;
-			tunnelElements[i].anchor.x = 0.5;
-			tunnelElements[i].anchor.y = 0.5;
-			
-			tunnelElements[i].scale.x = start - (0.12 * i * factor);//- (0.005 * i);
-			tunnelElements[i].scale.y = start - (0.12 * i * factor);//- (0.005 * i);
-			
-			factor -= 0.05;*/
-			
-			//stage.addChild(tunnelElements[i]);
 		}
 			
 			
@@ -45,16 +31,11 @@ function Tunnel ()
 		alpha.position.y = 300;
 		alpha.anchor.x = 0.5;
 		alpha.anchor.y = 0.5;
-		alpha.scale.x = 0.5;
-		alpha.scale.y = 0.5;
+		alpha.scale.x = 1;
+		alpha.scale.y = 1;
 		stage.addChild(alpha);
 		
 		
-		/*logo = PIXI.Sprite.fromImage(assetFolder+"tunnel.jpg");    
-		logo.position.x = 300;
-		logo.position.y = 300;
-		logo.anchor.x = 0.5;
-		logo.anchor.y = 0.5;*/
 		
 	};
 	
@@ -62,17 +43,8 @@ function Tunnel ()
 		var len = tunnelElements.length;
 		
 		for (var i = 0; i< len; i++) {
-			tunnelElements[i].scale.x *= 1.01;
-			tunnelElements[i].scale.y *= 1.01;
-		
-			//tunnelElements[i].position.x += i*1;
-		
-			//tunnelElements[i].position += i*10;
-		
-			if (tunnelElements[i].scale.x > 0.8) {
-				tunnelElements[i].scale.x = 0.1;
-				tunnelElements[i].scale.y = 0.1;
-			}
+			
+			tunnelElements[i].update();
 		}
 		
 		
@@ -88,28 +60,43 @@ function TunnelElement ()
 	var position;
 	var scale;
 	var elementTexture;
+	var factor = 0.2;
 	
-	this.init = function (center, index)
+	this.init = function (center, index, stage)
 	{
-		position = new Vec3();
+		position = new vec3();
 		
-		elementTexture = PIXI.Sprite.fromImage(assetFolder + "tubeTrack1.png");		
+		elementTexture = PIXI.Sprite.fromImage(assetFolder + "tubeBlue2.png");		
+		elementTexture.anchor.x = 0.5;
+		elementTexture.anchor.y = 0.5;
+		elementTexture.position.x = center.getX();
+		elementTexture.position.y = center.getY();
+		elementTexture.scale.x = Math.pow(0.8,index);        	//index * 0.1;
+		elementTexture.scale.y = Math.pow(0.8,index); 		//index * 1;
+		console.log(elementTexture.scale);
 		position.setX (center.getX());
 		position.setY (center.getY());
-		position.setZ (index);
+		position.setZ (Math.pow(0.8,index));
+		
+		stage.addChild(elementTexture);
 	};
 	
 	this.update = function ()
 	{
-		position.setZ(position.getZ() + 0.5);
+		//console.log (elementTexture.scale);
+	
+		position.setZ(position.getZ() * 1.0075);
 		
 		scale = position.getZ();
 		
 		elementTexture.scale.x = scale;
 		elementTexture.scale.y = scale;
 		
-		if (scale > 0.8) 
+		if (scale > 1.1) 
+		{
 			scale = 0.1;
+			position.setZ(0.1);
+		}
 		
 	};
 }
