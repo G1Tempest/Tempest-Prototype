@@ -1,12 +1,13 @@
 //level.js
+var levelEnd = false;
+var gameOver = false;
 
 function Level ()
 {
 	//var LevelMap = LevelLoader.load(curLevel);
 	
 	//create logo
-    var logo;
-	var background1;
+    var background1;
 	var background2;
 	var background3;
 	var background4;
@@ -24,6 +25,8 @@ function Level ()
 		player = new Player();
 
 		player.init(stage);
+		
+		tunnel.setPlayer (player);
 		
 		background1 = new PIXI.Graphics();
 		background1.beginFill(0x000000);  

@@ -35,7 +35,7 @@ function LaserBullet()
 			bullettexture.scale.x = scale;
 			bullettexture.scale.y = scale;
 			
-			radius = radius * 0.965;
+			radius = radius * 0.97;
 			//position.x = 
 			//position.y = 
 			//position.z = 
@@ -58,9 +58,9 @@ function LaserBullet()
 		radius = radi - 20;
 		angle = ang;
 		
-		bullettexture.scale.x = 0.3;
-		bullettexture.scale.y = 0.3;
-		scale = 0.3;
+		bullettexture.scale.x = 0.45;
+		bullettexture.scale.y = 0.45;
+		scale = 0.45;
 		
 		bullettexture.visible = true;
 		bullettexture.position.x = 300 + (radius - 20) * Math.sin(rad(angle));

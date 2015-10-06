@@ -15,8 +15,12 @@ function Player ()
 	var origin = new vec3();
 	origin.set(300,300,0);
 	
+	this.getAngle = function () 
+	{
+		return angle;
+	};
+	
 	var radius = 175;
-	var recoilTime;
 	
 	this.init = function (stage) {
 		position = new vec3();
@@ -122,9 +126,6 @@ function Player ()
 	
 	};
 	
-	//this.draw = funtion () {
-		
-	//};
 	
 	return this;
 }

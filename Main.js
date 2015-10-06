@@ -10,26 +10,28 @@ onkeydown = onkeyup = function(e){
 }
 
 var assetFolder = "textures/";
-   
+var curLevel;   
 
 function Tempest(){
 	
-	var curLevel;
+	
 	var level;
 	var levelLoader;
 	var stage;
 	var renderer;
+	var obstacle;
 	
 	this.loadNextLevel = function () {
 		curLevel ++;
 		
 		level = new Level ();
 		
+		
 	};
 	
 	
 	this.init = function () {
-		curLevel = -1;
+		curLevel = 0;
 		
 		stage = new PIXI.Stage(0x000000, true);	
 
@@ -40,12 +42,15 @@ function Tempest(){
 		this.loadNextLevel();
 		
 		level.init(stage);
+		
 	};
 	
 	
 	this.update = function (e)
 	{
-	
+		if (gameOver == true)
+			return;
+			
 		if (e)
 		{	
 			e = e || event; 
@@ -53,11 +58,29 @@ function Tempest(){
 		}
 		
 		level.update(e);
+		
+		
+			
+		
+		
+		if (levelEnd == true) {
+			
+			for (var i = stage.children.length - 1; i >= 0; i--) {
+				stage.removeChild(stage.children[i]);
+			};
+		
+			this.loadNextLevel();
+			
+			level.init(stage);
+		
+			levelEnd = false;
+		}
 	};
 	
 	this.draw = function ()
 	{
 		level.draw(renderer,stage);
+		
 	};
 	
 	
