@@ -1,6 +1,7 @@
 //tunnel.js
 
 var tnlIndex = 2;
+var collisionElements = [];
 
 function Tunnel ()
 {
@@ -60,7 +61,7 @@ function Tunnel ()
 		alpha.anchor.y = 0.5;
 		alpha.scale.x = 1;
 		alpha.scale.y = 1;
-		stage.addChild(alpha);
+		//stage.addChild(alpha);
 		
 		
 		
@@ -79,7 +80,16 @@ function Tunnel ()
 	
 	this.checkForCollision = function () {
 	
-		return tunnelElements[tnlIndex].checkForCollision(player.getAngle());
+		//return tunnelElements[tnlIndex].checkForCollision(player.getAngle());
+		
+		for (var i = 0; i< collisionElements.length; i++)
+		{
+			if (collisionElements[i].checkForCollision(player.getAngle()) == true) {
+				
+				
+				return true;
+			}
+		}
 	
 	};
 	
@@ -177,7 +187,7 @@ function TunnelElement ()
 	
 	};
 	
-	this.checkForCollision = function (playerAngle) 
+	/*this.checkForCollision = function (playerAngle) 
 	{
 		for (var i = 0; i < obstacles.length; i++)
 			if (obstacles[i].checkForCollision(playerAngle) == true)
@@ -185,23 +195,20 @@ function TunnelElement ()
 	
 		return false;
 		
-	};
+	};*/
 	
 	this.update = function ()
 	{
 	
 		
-		position.setZ(position.getZ() * 1.0075);
+		position.setZ(position.getZ() * 1.02);
 		
 		scale = position.getZ();
 		
 //		if (ndx == 5)
 //			console.log(scale);
 	
-		if (scale > 0.65 && scale < 0.8) {
-			tnlIndex = ndx % 11;
-			console.log (tnlIndex);
-		}
+		
 		
 	
 		elementTexture.scale.x = scale;
@@ -232,13 +239,14 @@ function ObstacleElement (typ)
 	var angle;
 	var radius;
 	var type = typ;
+	var stage;
 	
 	this.getTexture = function ()
 	{
 		return elementTexture;
 	};
 	
-	this.init = function (center, obsNdx, scale)//, stage)
+	this.init = function (center, obsNdx, scale, stage)
 	{
 		position = new vec3();
 		
@@ -270,9 +278,14 @@ function ObstacleElement (typ)
 		var obsMax = angle + 9;
 		var obsMin = angle - 9;
 		
-		if (playerAngle >= obsMin && playerAngle <= obsMax)
-			return true;
+		if (playerAngle >= obsMin && playerAngle <= obsMax) {
 			
+			console.log (playerAngle);
+			console.log (obsMax);
+			console.log (obsMin);
+			
+			return true;
+		}
 		return false;
 	
 	};
@@ -280,22 +293,56 @@ function ObstacleElement (typ)
 	this.update = function ()
 	{
 		
-		position.setZ(position.getZ() * 1.0075);
+		if (type == '1')
+			factor = 1.02;
+		else if (type == '2')
+			factor = 1.05;
+		else if (type == '3')
+			factor = 1.04;
+		else if (type == '4')
+			factor = 1.03;
+			
+		position.setZ(position.getZ() * factor);
 		
-		radius = radius * 1.0075;	
+		var oldScale = scale;
+		
+		scale = position.getZ();
+		
+		if (scale > 0.70 && scale < 0.80) {
+			
+			var index = collisionElements.indexOf(this);
+	
+			if (index == -1)
+				collisionElements.push(this);
+			
+			
+			//tnlIndex = ndx % 11;
+			//console.log (tnlIndex);
+		} else if (scale >= 0.80) {
+			
+			var index = collisionElements.indexOf(this);
+	
+			if (index != -1)
+				collisionElements.splice(index,1);
+			
+		}
+		
+		radius = radius * factor;	
 		
 		elementTexture.position.x = 300 + (radius * Math.sin (rad(angle)));
 		elementTexture.position.y = 300 + (radius * Math.cos (rad(angle)));
 		
-		scale = position.getZ();
+		
 		
 		elementTexture.scale.x = scale;
 		elementTexture.scale.y = scale;
 		
 		if (scale > 1.1) 
 		{
-			scale = 0.1;
-			position.setZ(0.1);
+			
+			elementTexture.visible = false;
+			//scale = 0.1;
+			//position.setZ(0.1);
 		}
 		
 	};
