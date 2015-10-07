@@ -95,6 +95,7 @@ function Tunnel ()
 		
 		var activeAmmo = player.getActiveAmmo();
 		
+		var ndxArr = [];
 		
 		for (var i = 0; i < 11; i++)
 		{
@@ -106,11 +107,35 @@ function Tunnel ()
 			
 				for (var j = 0 ; j < activeAmmo.length; j++)
 				{
-					obstacle.checkForCollision (activeAmmo[j].getAngle(),activeAmmo[j].getScale());
+					var res = obstacle.checkForCollision (activeAmmo[j].getAngle(),activeAmmo[j].getScale());
 					
-			
+					if (res == true)
+					{
+								
+						//obstacles.splice();
+						ndxArr.push ([i,k, j]);
+
+						
+					}
+					
 				}
 			}
+		}
+		
+		for (var i = 0; i < ndxArr.length; i++)
+		{
+			var obstacles = tunnelElements[ndxArr[i][0]].getObstacles();
+			
+			var obstacle = obstacles[ndxArr[i][1]];
+			
+			obstacles.splice(ndxArr[i][1],1);
+			
+			stage.removeChild (obstacle.getTexture());
+		
+			//player.addAmmo (activeAmmo[ndxArr[i][2]]);
+		
+			activeAmmo[ndxArr[i][2]].reset();
+			
 		}
 		
 		
@@ -351,6 +376,8 @@ function ObstacleElement (typ)
 					console.log (laserscale);
 				
 					console.log (scale);
+					
+					return true;
 				}
 				//min ends before max starts -> no intersection
 				//if min.end < max.start

@@ -61,6 +61,13 @@ function LaserBullet()
 		}
 	};
 	
+	this.reset = function ()
+	{
+		active = false;
+		bullettexture.visible = false;
+		player.addAmmo (this);
+	};
+	
 	this.fire = function (position, ang, radi)
 	{
 		active = true;

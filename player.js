@@ -135,8 +135,8 @@ function Player ()
 		playerTexture.position.y = position.getY();
 		playerTexture.rotation = rad(360-angle);
 		
-//console.log(score);
-Scoretext.setText("Score: "+score);
+		//console.log(score);
+		Scoretext.setText("Score: "+score);
 		
 	};
 	
