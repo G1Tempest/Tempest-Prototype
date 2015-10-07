@@ -11,6 +11,11 @@ onkeydown = onkeyup = function(e){
 
 var assetFolder = "textures/";
 var curLevel;   
+var MainMenuState=true;
+var IngameState=false;
+var firstEntry=true;
+var titleScreen;
+var playerScore=0;
 
 function Tempest(){
 	
@@ -28,6 +33,11 @@ function Tempest(){
 		
 		
 	};
+	this.loadTitleScreen = function () {
+		titleScreen=new TitleScreen();
+
+
+	};
 	
 	
 	this.init = function () {
@@ -39,9 +49,16 @@ function Tempest(){
 	
 		document.body.appendChild(renderer.view);	
 	
+
+		if(MainMenuState) {
+			this.loadTitleScreen();
+			titleScreen.init(stage);
+		}
+		else {
 		this.loadNextLevel();
+			level.init(stage);
+		}
 		
-		level.init(stage);
 		
 	};
 	
@@ -57,7 +74,18 @@ function Tempest(){
 			map[e.keyCode] = e.type == 'keydown';
 		}
 		
+
+		if(MainMenuState)
+		titleScreen.update(e);
+		else{
+			if(firstEntry) {
+				firstEntry=false;
+				this.loadNextLevel();
+				level.init(stage);
+			}
 		level.update(e);
+		}
+
 		
 		
 			
@@ -79,7 +107,12 @@ function Tempest(){
 	
 	this.draw = function ()
 	{
+
+		if(MainMenuState)
+		titleScreen.draw(renderer,stage);
+		else
 		level.draw(renderer,stage);
+		renderer.render(stage);
 		
 	};
 	

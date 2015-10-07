@@ -13,11 +13,17 @@ function Level ()
 	var background4;
 	var player;
 	var tunnel;
+	var score;
 	
 	//player.rotation = 270 * 0.01745;
 	this.init = function (stage) {
 		
 		
+
+		score= new PIXI.Text("Score:0", {font:"20px Arial", fill:"red"})
+		score.position.x=50;
+		score.position.y=50;
+
 		tunnel = new Tunnel ();
 		
 		tunnel.init (stage);
@@ -47,15 +53,19 @@ function Level ()
 		background4.beginFill(0x000000);  
 		background4.drawRect(500, 0, 200, 800);
 		stage.addChild(background4);
-	
+		stage.addChild(score);
 	};
 	
 	this.update = function (e) {
 		
 		//if (e == null ){
-			tunnel.update(e);
+		playerScore++;
+		score.setText("Score:" + playerScore/100);
+			
+		player.update(e);
+		tunnel.update(e);
 		//} else {
-			player.update(e);
+			
 		//}
 		
 	};

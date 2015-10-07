@@ -25,13 +25,22 @@ function LaserBullet()
 		
 		player = playr;
 	};
+	
+	this.getScale = function()
+	{
+		return scale;
+	};
 
+	this.getAngle = function ()
+	{
+		return angle;
+	};
 	
 	this.update = function ()
 	{
 		if (active == true)
 		{
-			scale = scale * 0.95;
+			scale = scale * 0.96;
 			bullettexture.scale.x = scale;
 			bullettexture.scale.y = scale;
 			
@@ -58,9 +67,9 @@ function LaserBullet()
 		radius = radi - 20;
 		angle = ang;
 		
-		bullettexture.scale.x = 0.45;
-		bullettexture.scale.y = 0.45;
-		scale = 0.45;
+		bullettexture.scale.x = 0.7;
+		bullettexture.scale.y = 0.7;
+		scale = 0.7;
 		
 		bullettexture.visible = true;
 		bullettexture.position.x = 300 + (radius - 20) * Math.sin(rad(angle));

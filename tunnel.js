@@ -13,6 +13,10 @@ function Tunnel ()
 	var levelMap = [];
 	var stage;
 	var player;
+	var score=0;
+	var scoreText;
+	var scoreOrigin=new vec3();
+	scoreOrigin.set(10,10,0);
 	
 	this.setPlayer = function (plyr)
 	{
@@ -53,6 +57,12 @@ function Tunnel ()
 		}
 		
 
+		//adding score
+
+		scoreText= new PIXI.Text("Score:"+score, {font:"50px Arial", fill:"red"});
+		scoreText.x=center.x;
+		scoreText.y=center.y;
+		stage.addChild(scoreText);
 		
 		alpha = PIXI.Sprite.fromImage (assetFolder + "alpha.png");
 		alpha.position.x = 300;
@@ -81,12 +91,32 @@ function Tunnel ()
 	this.checkForCollision = function () {
 	
 		//return tunnelElements[tnlIndex].checkForCollision(player.getAngle());
+		//player.checkForCollision();
+		
+		var activeAmmo = player.getActiveAmmo();
+		
+		
+		for (var i = 0; i < 11; i++)
+		{
+			var obstacles = tunnelElements[i].getObstacles();
+				
+			for (var k = 0; k < obstacles.length; k++)
+			{
+				var obstacle = obstacles[k];
+			
+				for (var j = 0 ; j < activeAmmo.length; j++)
+				{
+					obstacle.checkForCollision (activeAmmo[j].getAngle(),activeAmmo[j].getScale());
+					
+			
+				}
+			}
+		}
+		
 		
 		for (var i = 0; i< collisionElements.length; i++)
 		{
-			if (collisionElements[i].checkForCollision(player.getAngle()) == true) {
-				
-				
+			if (collisionElements[i].checkForCollision(player.getAngle(), -1) == true) {
 				return true;
 			}
 		}
@@ -197,6 +227,11 @@ function TunnelElement ()
 		
 	};*/
 	
+	this.getObstacles = function () 
+	{
+		return obstacles;
+	};
+	
 	this.update = function ()
 	{
 	
@@ -206,7 +241,7 @@ function TunnelElement ()
 		scale = position.getZ();
 		
 //		if (ndx == 5)
-//			console.log(scale);
+//			//console.log(scale);
 	
 		
 		
@@ -262,7 +297,7 @@ function ObstacleElement (typ)
 		elementTexture.scale.y = scale; 		
 		elementTexture.rotation = rad(360-angle);
 		
-		//console.log(elementTexture.scale);
+		////console.log(elementTexture.scale);
 		position.setX (center.getX());
 		position.setY (center.getY());
 		position.setZ (scale);
@@ -270,23 +305,70 @@ function ObstacleElement (typ)
 		//stage.addChild(elementTexture);
 	};
 	
-	this.checkForCollision = function (playerAngle)
+	this.checkForCollision = function (playerAngle, laserscale)
 	{
 		//var playerMax = playerAngle + 9;
 		//var playerMin = playerAngle - 9;
-	
+		
+		if (laserscale == -1)
+		{
+			var obsMax = angle + 9;
+			var obsMin = angle - 9;
+		
+			if (playerAngle >= obsMin && playerAngle <= obsMax) {
+			
+				//console.log (playerAngle);
+				//console.log (obsMax);
+				//console.log (obsMin);
+			
+				return true;
+			}
+			
+			return false;
+		}
+
 		var obsMax = angle + 9;
 		var obsMin = angle - 9;
 		
 		if (playerAngle >= obsMin && playerAngle <= obsMax) {
 			
-			console.log (playerAngle);
-			console.log (obsMax);
-			console.log (obsMin);
+			//console.log (playerAngle);
+			//console.log (obsMax);
+			//console.log (obsMin);
 			
-			return true;
+			if (type != '1')
+			{
+				//range min = (a.start < b.start  ? a : b)
+				//range max = (min == a ? b : a)
+	
+				//console.log (laserscale);
+				//console.log (scale);
+				
+				var diff = laserscale - scale;
+				diff = Math.abs(diff);
+				
+				if (diff > 0 && diff < 0.02) {
+					console.log (laserscale);
+				
+					console.log (scale);
+				}
+				//min ends before max starts -> no intersection
+				//if min.end < max.start
+				//	return null //the ranges don't intersect
+	
+				//return range(max.start , (min.end < max.end ? min.end : max.end))
+			
+			}
 		}
+			
 		return false;
+
+		
+		
+		
+		
+	
+		
 	
 	};
 	
@@ -317,7 +399,7 @@ function ObstacleElement (typ)
 			
 			
 			//tnlIndex = ndx % 11;
-			//console.log (tnlIndex);
+			////console.log (tnlIndex);
 		} else if (scale >= 0.80) {
 			
 			var index = collisionElements.indexOf(this);

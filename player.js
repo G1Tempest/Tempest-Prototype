@@ -11,7 +11,11 @@ function Player ()
 	var angle;
 	var inactiveammo;
 	var activeammo;
+	var score=0;
 	
+	var scoreOrigin=new vec3();
+	scoreOrigin.set(10,10,0);
+	var Scoretext;
 	var origin = new vec3();
 	origin.set(300,300,0);
 	
@@ -27,6 +31,7 @@ function Player ()
 		
 		angle = 0;
 		
+	 Scoretext= new PIXI.Text("Score: "+score, {font:"50px Arial", fill:"red"});
 		
 		position.set(origin.getX() + Math.sin(rad(angle)) * radius,
 					 origin.getY() + Math.cos(rad(angle)) * radius,
@@ -51,7 +56,22 @@ function Player ()
 		activeammo = [];
 		
 		stage.addChild(playerTexture);
+		stage.addChild(Scoretext);
 		
+	};
+	
+	this.checkForCollision = function () 
+	{
+		
+		
+		
+	};
+	
+	this.getActiveAmmo = function ()
+	{
+	
+		return activeammo;
+	
 	};
 	
 	this.update = function (e) {
@@ -114,6 +134,9 @@ function Player ()
 		playerTexture.position.x = position.getX();
 		playerTexture.position.y = position.getY();
 		playerTexture.rotation = rad(360-angle);
+		
+//console.log(score);
+Scoretext.setText("Score: "+score);
 		
 	};
 	
