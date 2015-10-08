@@ -16,6 +16,7 @@ var IngameState=false;
 var firstEntry=true;
 var titleScreen;
 var playerScore=0;
+var backGroundAudio;// = $("backgroundScore")
 
 function Tempest(){
 	
@@ -28,7 +29,6 @@ function Tempest(){
 	
 	this.loadNextLevel = function () {
 		curLevel ++;
-		
 		level = new Level ();
 		
 		
@@ -41,6 +41,11 @@ function Tempest(){
 	
 	
 	this.init = function () {
+		
+		backGroundAudio = $("backgroundScore");
+		backGroundAudio.play();
+		
+		
 		curLevel = 0;
 		
 		stage = new PIXI.Stage(0x000000, true);	
