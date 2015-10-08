@@ -17,6 +17,7 @@ var firstEntry=true;
 var titleScreen;
 var playerScore=0;
 var backGroundAudio;// = $("backgroundScore")
+var bulletFired = false;
 
 function Tempest(){
 	
@@ -73,22 +74,15 @@ function Tempest(){
 		if (gameOver == true)
 			return;
 			
-		if (e)
-		{	
-			e = e || event; 
-			map[e.keyCode] = e.type == 'keydown';
-		}
+		
 		
 
 		if(MainMenuState)
-		titleScreen.update(e);
+			titleScreen.update(e);
 		else{
-			if(firstEntry) {
-				firstEntry=false;
-				this.loadNextLevel();
-				level.init(stage);
-			}
-		level.update(e);
+			
+		
+			level.update(e);
 		}
 
 		
@@ -110,13 +104,38 @@ function Tempest(){
 		}
 	};
 	
+	this.keyFunction = function (e)
+	{
+		if (e)
+		{	
+				e = e || event; 
+				map[e.keyCode] = e.type == 'keydown';
+		}
+		
+		if (MainMenuState == false && e.keyCode == 32 && e.type == 'keydown')
+		{
+			bulletFired = true;
+		}
+	};
+	
+	
 	this.draw = function ()
 	{
 
 		if(MainMenuState)
-		titleScreen.draw(renderer,stage);
-		else
-		level.draw(renderer,stage);
+			titleScreen.draw(renderer,stage);
+		else {
+			
+			if(firstEntry) {
+				firstEntry=false;
+				this.loadNextLevel();
+				level.init(stage);
+			}
+			
+			level.draw(renderer,stage);
+		}
+			
+		
 		renderer.render(stage);
 		
 	};
@@ -135,8 +154,8 @@ var game = new Tempest();
    
 
    
-window.addEventListener('keydown',game.update,false);
-window.addEventListener('keyup',game.update,false);
+window.addEventListener('keydown',game.keyFunction,false);
+window.addEventListener('keyup',game.keyFunction,false);
 
 function init(){
 

@@ -402,6 +402,8 @@ function ObstacleElement (typ)
 	this.update = function ()
 	{
 		
+		factor = 1.02;
+		
 		if (type == '1')
 			factor = 1.02;
 		else if (type == '2')

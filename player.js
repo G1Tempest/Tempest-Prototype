@@ -4,6 +4,8 @@ function rad(deg)
 	return deg * 0.01745;
 }
 
+
+
 function Player ()
 {
 	var playerTexture;
@@ -18,6 +20,7 @@ function Player ()
 	var Scoretext;
 	var origin = new vec3();
 	origin.set(300,300,0);
+	var ammoCount = 1;
 	
 	this.getAngle = function () 
 	{
@@ -47,7 +50,7 @@ function Player ()
 		
 		inactiveammo = [];
 		
-		for (var i = 0; i<2; i++)
+		for (var i = 0; i<5; i++)
 		{	
 			inactiveammo.push(new LaserBullet());
 			inactiveammo[i].init(stage,this);
@@ -75,10 +78,6 @@ function Player ()
 	};
 	
 	this.update = function (e) {
-		//if (e == null)
-			//return;
-		//else {
-			//console.log (e.keyCode);
 	
 	
 		if (map[39] == true) {
@@ -106,7 +105,7 @@ function Player ()
 			
 		}
 
-		if (e != null && e.keyCode == 32) {
+		if (bulletFired == true) {
 			if (map[32] == true) {
 				
 				var ammolen = inactiveammo.length;
@@ -119,10 +118,18 @@ function Player ()
 					var index = inactiveammo.indexOf(inactiveammo[0]);
 					inactiveammo.splice(0, 1);
 					
+					var bulletAudio = $("bulletAudio" + ammoCount);
+					ammoCount ++;
 					
+					if (ammoCount == 5)
+						ammoCount = 1;
+					
+					bulletAudio.play();
 				}
 				
 			}
+			
+			bulletFired = false;
 		}
 		
 		for (var i = 0; i < activeammo.length; i++)
